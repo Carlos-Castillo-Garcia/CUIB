@@ -1,5 +1,4 @@
 package com.eep.CUIB.Entity;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -28,7 +27,6 @@ public class Alumnos {
 
     public Alumnos() {
     }
-
     public Alumnos(Long id, String nombre,
                    String apellidos, String direccion,
                    String localidad, String provincia,
@@ -47,35 +45,27 @@ public class Alumnos {
     public Long getId() {
         return id;
     }
-
     public String getNombre() {
         return nombre;
     }
-
     public String getApellidos() {
         return apellidos;
     }
-
     public String getDireccion() {
         return direccion;
     }
-
     public String getLocalidad() {
         return localidad;
     }
-
     public String getProvincia() {
         return provincia;
     }
-
     public String getPais() {
         return pais;
     }
-
     public String getTelefono() {
         return telefono;
     }
-
     public int getId_asignatura() {
         return id_asignatura;
     }
@@ -83,35 +73,27 @@ public class Alumnos {
     public void setId(Long id) {
         this.id = id;
     }
-
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
     public void setApellidos(String apellidos) {
         this.apellidos = apellidos;
     }
-
     public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
-
     public void setLocalidad(String localidad) {
         this.localidad = localidad;
     }
-
     public void setProvincia(String provincia) {
         this.provincia = provincia;
     }
-
     public void setPais(String pais) {
         this.pais = pais;
     }
-
     public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
-
     public void setId_asignatura(int id_asignatura) {
         this.id_asignatura = id_asignatura;
     }

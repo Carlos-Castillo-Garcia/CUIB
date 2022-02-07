@@ -6,9 +6,9 @@
 </head>
 <body>
 <h1>Loggin</h1>
-<form action="#" th:action="@{/login}" th:object="${login}" method="post">
-    <input type="text" name="usuario" id="ususario" th:field="${login.usuario}">
-    <input type="password" name="password" id="password" th:field="${login.password}">
+<form action="#" th:action="@{/addasignaturasget}">
+    <input type="text" name="usuario" id="ususario">
+    <input type="password" name="password" id="password">
     <input type="submit" value="submit">
 </form>
 </body>
