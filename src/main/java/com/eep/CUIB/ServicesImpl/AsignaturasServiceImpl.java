@@ -6,6 +6,7 @@ import com.eep.CUIB.Services.AsignaturasService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,8 +34,8 @@ public class AsignaturasServiceImpl implements AsignaturasService {
             while ((content = br.readLine()) != null) {
                 String[] asignaturas = content.split("#");
                 Asignaturas test = new Asignaturas(Integer.parseInt(asignaturas[0]), asignaturas[1],
-                        Integer.parseInt(asignaturas[3]), Integer.parseInt(asignaturas[4]),
-                        Integer.parseInt(asignaturas[5]));
+                        Integer.parseInt(asignaturas[2]), Integer.parseInt(asignaturas[3]),
+                        Integer.parseInt(asignaturas[4]));
                 list_asignaturas.add(test);
             }
         } catch (FileNotFoundException e) {
@@ -65,20 +66,28 @@ public class AsignaturasServiceImpl implements AsignaturasService {
         }
         listado_asignaturas.get(0).setId(nuevo_id);
         try {
-            if(listado_asignaturas.size()>0){
-                bw = new BufferedWriter(fw = new FileWriter(AsignaturasFile));
-                for (int i = 0; i < listado_asignaturas.size(); i++){
+            if(listado_asignaturas.size()>0) {
+                fw = new FileWriter(AsignaturasFile);
+                bw = new BufferedWriter(fw);
+                for (int i = 0; i < listado_asignaturas.size(); i++) {
                     String datos = listado_asignaturas.get(i).toString();
                     bw.write(datos + "\n");
                 }
                 mensaje = "Asignaturas Guardadas";
-            }else{
+            } else {
                 asignaturasComponent.errores("No hay ningun dato a guardar");
             }
         } catch (FileNotFoundException e) {
             asignaturasComponent.errores("Archivo AsignaturaFile no encontrado");
         } catch (IOException e) {
             asignaturasComponent.errores("Fallo en la lectura del archivo AsignaturaFile");
+        } finally {
+            try {
+                fw.close();
+                bw.close();
+            } catch (IOException e) {
+                asignaturasComponent.errores("Error en el cierre del Writer");
+            }
         }
         return mensaje;
     }

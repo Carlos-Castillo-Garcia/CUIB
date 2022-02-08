@@ -3,7 +3,7 @@ package com.eep.CUIB.Model;
 
 import javax.validation.constraints.NotBlank;
 
-public class Alumnos {
+public class ModelAlumnos {
 
     Long id;
     @NotBlank(message = "Rellene el campo porfavor")
@@ -21,13 +21,13 @@ public class Alumnos {
     @NotBlank(message = "Rellene el campo porfavor")
     String telefono;
 
-    public Alumnos() {
+    public ModelAlumnos() {
     }
 
-    public Alumnos(Long id, String nombre,
-                   String apellidos, String direccion,
-                   String localidad, String provincia,
-                   String pais, String telefono) {
+    public ModelAlumnos(Long id, String nombre,
+                        String apellidos, String direccion,
+                        String localidad, String provincia,
+                        String pais, String telefono) {
         this.id = id;
         this.nombre = nombre;
         this.apellidos = apellidos;
