@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table>
+    <thead>
+    <tr>
+        <th>Nombre</th>
+        <th>Apellidos</th>
+        <th>Direccion</th>
+        <th>Localidad</th>
+        <th>Provincia</th>
+        <th>Pais</th>
+        <th>Telefono</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="i : ${alumnos}">
+        <th><span th:text="${i.nombre}"></span></th>
+        <th><span th:text="${i.apellidos}"></span></th>
+        <th><span th:text="${i.direccion}"></span></th>
+        <th><span th:text="${i.localidad}"></span></th>
+        <th><span th:text="${i.provincia}"></span></th>
+        <th><span th:text="${i.pais}"></span></th>
+        <th><span th:text="${i.telefono}"></span></th>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

@@ -5,8 +5,8 @@ import org.apache.juli.logging.LogFactory;
 import org.springframework.stereotype.Component;
 
 @Component("AsignaturasComponent")
-public class AsignaturasComponent {
-    private static final Log LOG = LogFactory.getLog(AsignaturasComponent.class);
+public class LogComponent {
+    private static final Log LOG = LogFactory.getLog(LogComponent.class);
 
     public void errores(String mensaje) {
         LOG.error("ERROR: " + mensaje);

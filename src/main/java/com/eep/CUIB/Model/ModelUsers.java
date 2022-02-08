@@ -1,15 +1,15 @@
 package com.eep.CUIB.Model;
 
-public class Usuarios {
+public class ModelUsers {
 
     Long id;
     String nombre;
     String password;
 
-    public Usuarios() {
+    public ModelUsers() {
     }
 
-    public Usuarios(Long id, String nombre, String password) {
+    public ModelUsers(Long id, String nombre, String password) {
         this.id = id;
         this.nombre = nombre;
         this.password = password;

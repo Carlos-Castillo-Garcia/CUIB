@@ -1,6 +1,6 @@
 package com.eep.CUIB.ServicesImpl;
 
-import com.eep.CUIB.Component.AsignaturasComponent;
+import com.eep.CUIB.Component.LogComponent;
 import com.eep.CUIB.Model.Asignaturas;
 import com.eep.CUIB.Services.AsignaturasService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +22,7 @@ public class AsignaturasServiceImpl implements AsignaturasService {
 
     @Autowired
     @Qualifier("AsignaturasComponent")
-    private AsignaturasComponent asignaturasComponent;
+    private LogComponent logComponent;
 
     @Override
     public List<Asignaturas> LeerAsignaturas() {
@@ -39,15 +39,15 @@ public class AsignaturasServiceImpl implements AsignaturasService {
                 list_asignaturas.add(test);
             }
         } catch (FileNotFoundException e) {
-            asignaturasComponent.errores("Archivo no encontrado");
+            logComponent.errores("Archivo no encontrado");
         } catch (IOException e) {
-            asignaturasComponent.errores("Lectura del Archivo incorrecta");
+            logComponent.errores("Lectura del Archivo incorrecta");
         } finally {
             try {
                 fr.close();
                 br.close();
             } catch (IOException e) {
-                asignaturasComponent.errores("Error en el cierre del BufferWriter y el FileReader de la lectura de los Camioneros");
+                logComponent.errores("Error en el cierre del BufferWriter y el FileReader de la lectura de los Camioneros");
             }
         }
         return list_asignaturas;
@@ -75,18 +75,18 @@ public class AsignaturasServiceImpl implements AsignaturasService {
                 }
                 mensaje = "Asignaturas Guardadas";
             } else {
-                asignaturasComponent.errores("No hay ningun dato a guardar");
+                logComponent.errores("No hay ningun dato a guardar");
             }
         } catch (FileNotFoundException e) {
-            asignaturasComponent.errores("Archivo AsignaturaFile no encontrado");
+            logComponent.errores("Archivo AsignaturaFile no encontrado");
         } catch (IOException e) {
-            asignaturasComponent.errores("Fallo en la lectura del archivo AsignaturaFile");
+            logComponent.errores("Fallo en la lectura del archivo AsignaturaFile");
         } finally {
             try {
                 fw.close();
                 bw.close();
             } catch (IOException e) {
-                asignaturasComponent.errores("Error en el cierre del Writer");
+                logComponent.errores("Error en el cierre del Writer");
             }
         }
         return mensaje;

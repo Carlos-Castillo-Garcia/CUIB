@@ -8,17 +8,15 @@ import java.util.List;
 import java.util.Optional;
 
 public interface AlumnosService {
-    List<Alumnos> listAllCoches();
+    List<Alumnos> listAllAlumnos();
 
-    Alumnos addCoches(Alumnos coches);
+    Alumnos addAlumnos(Alumnos alumnos);
 
-    int removeCoches(int id);
-
-    Alumnos updateCoches(Alumnos coches);
+    Alumnos updateAlumnos(Alumnos alumnos);
 
     Optional<Alumnos> findbyid(int id);
 
-    void delbyid(ArrayList<Integer> ids);
+    void delbyid(ArrayList<Long> ids);
 
-    Alumnos Model_Entity_Alumnos(ModelAlumnos coche);
+    Alumnos Model_Entity_Alumnos(ModelAlumnos alumnos);
 }
