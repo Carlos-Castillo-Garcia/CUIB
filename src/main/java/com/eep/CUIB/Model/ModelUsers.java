@@ -5,14 +5,16 @@ public class ModelUsers {
     Long id;
     String nombre;
     String password;
+    Long permisos;
 
     public ModelUsers() {
     }
 
-    public ModelUsers(Long id, String nombre, String password) {
+    public ModelUsers(Long id, String nombre, String password, Long permisos) {
         this.id = id;
         this.nombre = nombre;
         this.password = password;
+        this.permisos = permisos;
     }
 
     public Long getId() {
@@ -27,6 +29,10 @@ public class ModelUsers {
         return password;
     }
 
+    public Long getPermisos() {
+        return permisos;
+    }
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -37,6 +43,10 @@ public class ModelUsers {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public void setPermisos(Long permisos) {
+        this.permisos = permisos;
     }
 
     @Override

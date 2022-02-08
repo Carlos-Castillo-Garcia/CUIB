@@ -61,19 +61,19 @@ public class CUIBController {
 
     //  INICIO GET's y POST's DE ASIGNATURAS
     // INICIO GET'S DE ASIGNATURAS
-    @GetMapping("listasignaturas")
+    @GetMapping("listasignaturasget")
     public String ListAsignaturasGet(Model model) {
         model.addAttribute("asignaturas", asignaturasServiceImpl.LeerAsignaturas());
         return LIST_ASIGNATURAS;
     }
 
-    @GetMapping("addasignaturas")
+    @GetMapping("addasignaturasget")
     public String AddAsignaturasGet(Model model) {
         model.addAttribute("asignatura", new Asignaturas());
         return ADD_ASIGNATURAS;
     }
 
-    @GetMapping("updateasignaturas")
+    @GetMapping("updateasignaturasget")
     public String UpdateAsginaturasGet(Model model, Asignaturas asignatura) {
         model.addAttribute("asignatura", asignatura);
         return UPDATE_ASIGNATURAS;
@@ -91,19 +91,19 @@ public class CUIBController {
 //  INICIO GET's y POST's DE ALUMNOS
 
     // INICIO GET'S DE ALUMNOS
-    @GetMapping("listalumnos")
+    @GetMapping("listalumnosget")
     public String ListAlumnosGet(Model model) {
         model.addAttribute("alumnos", alumnosServiceImpl.listAllAlumnos());
         return LIST_ALUMNOS;
     }
 
-    @GetMapping("addalumnos")
+    @GetMapping("addalumnosget")
     public String AddAlumnosGet(Model model) {
         model.addAttribute("alumno", new Alumnos());
         return ADD_ALUMNOS;
     }
 
-    @GetMapping("updatealumnos")
+    @GetMapping("updatealumnosget")
     public String UpdateAlumnosGet(Model model, Alumnos alumnos) {
         model.addAttribute("alumno", alumnos);
         return UPDATE_ALUMNOS;
@@ -121,19 +121,19 @@ public class CUIBController {
 //  INICIO GET's y POST's DE USUARIOS
 
     // INICIO GET'S DE USUARIOS
-    @GetMapping("listusuarios")
+    @GetMapping("listusuariosget")
     public String ListUsuariosGet(Model model) {
         model.addAttribute("usuarios", usuariosServiceImpl.listAllUsuarios());
         return LIST_USERS;
     }
 
-    @GetMapping("addusuarios")
+    @GetMapping("addusuariosget")
     public String AddUsuariosGet(Model model) {
         model.addAttribute("usuario", new Usuarios());
         return ADD_USERS;
     }
 
-    @GetMapping("updateusuarios")
+    @GetMapping("updateusuariosget")
     public String UpdateUsuariosGet(Model model, Usuarios usuario) {
         model.addAttribute("usuario", usuario);
         return UPDATE_USERS;
