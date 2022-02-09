@@ -13,11 +13,13 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each="i : ${usuarios}">
+    <tr th:each="i, iterator : ${usuarios}">
         <th><span th:text="${i.nombre}"></span></th>
         <th><span th:text="${i.password}"></span></th>
+        <th><input type="checkbox" th:value="${iterator.index}" th:name="id"></th>
     </tr>
     </tbody>
 </table>
+<button><a style="text-decoration: none; color: black" href="/addalumnosget">Add Alumnos</a></button>
 </body>
 </html>

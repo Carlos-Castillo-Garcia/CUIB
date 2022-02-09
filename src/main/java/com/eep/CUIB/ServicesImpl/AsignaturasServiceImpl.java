@@ -67,13 +67,14 @@ public class AsignaturasServiceImpl implements AsignaturasService {
         listado_asignaturas.get(0).setId(nuevo_id);
         try {
             if(listado_asignaturas.size()>0) {
-                fw = new FileWriter(AsignaturasFile);
+                fw = new FileWriter(AsignaturasFile, true);
                 bw = new BufferedWriter(fw);
                 for (int i = 0; i < listado_asignaturas.size(); i++) {
                     String datos = listado_asignaturas.get(i).toString();
                     bw.write(datos + "\n");
                 }
                 mensaje = "Asignaturas Guardadas";
+                bw.flush();
             } else {
                 logComponent.errores("No hay ningun dato a guardar");
             }

@@ -1,11 +1,13 @@
 package com.eep.CUIB.Entity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
 public class Alumnos {
     @Id
+    @GeneratedValue
     @Column(name = "id", nullable = false)
     private Long id;
     @Column(name = "nombre", nullable = false)
@@ -18,11 +20,11 @@ public class Alumnos {
     String localidad;
     @Column(name = "provincia", nullable = false)
     String provincia;
-    @Column(name = "ais", nullable = false)
+    @Column(name = "pais", nullable = false)
     String pais;
     @Column(name = "telefono", nullable = false)
     String telefono;
-    @Column(name = "id_asignatura", nullable = true)
+    @Column(name = "id_asignatura")
     int id_asignatura;
 
     public Alumnos() {

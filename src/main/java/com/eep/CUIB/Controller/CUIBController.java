@@ -2,8 +2,6 @@ package com.eep.CUIB.Controller;
 
 import com.eep.CUIB.Component.LogComponent;
 import com.eep.CUIB.Entity.Alumnos;
-import com.eep.CUIB.Entity.Usuarios;
-import com.eep.CUIB.Model.Asignaturas;
 import com.eep.CUIB.ServicesImpl.AlumnosServiceImpl;
 import com.eep.CUIB.ServicesImpl.AsignaturasServiceImpl;
 import com.eep.CUIB.ServicesImpl.UsuariosServiceImpl;
@@ -12,6 +10,11 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.ArrayList;
 
 
 @Controller
@@ -59,41 +62,61 @@ public class CUIBController {
         return CRUD;
     }
 
-    //  INICIO GET's y POST's DE ASIGNATURAS
-    // INICIO GET'S DE ASIGNATURAS
-    @GetMapping("listasignaturasget")
-    public String ListAsignaturasGet(Model model) {
-        model.addAttribute("asignaturas", asignaturasServiceImpl.LeerAsignaturas());
-        return LIST_ASIGNATURAS;
-    }
-
-    @GetMapping("addasignaturasget")
-    public String AddAsignaturasGet(Model model) {
-        model.addAttribute("asignatura", new Asignaturas());
-        return ADD_ASIGNATURAS;
-    }
-
-    @GetMapping("updateasignaturasget")
-    public String UpdateAsginaturasGet(Model model, Asignaturas asignatura) {
-        model.addAttribute("asignatura", asignatura);
-        return UPDATE_ASIGNATURAS;
-    }
-    // FIN GET'S DE ASIGNATURAS
-
-
-    // INICIO POST'S DE ASIGNATURAS
-
-    // FIN POST'S DE ASIGNATURAS
-
-//  FIN GET'S Y POST'S DE ASIGNATURAS
+////  INICIO GET's y POST's DE ASIGNATURAS
+//
+//    // INICIO GET'S DE ASIGNATURAS
+//    @GetMapping("listasignaturasget")
+//    public String ListAsignaturasGet(Model model) {
+//        model.addAttribute("asignaturas", asignaturasServiceImpl.LeerAsignaturas());
+//        return LIST_ASIGNATURAS;
+//    }
+//
+//    @GetMapping("addasignaturasget")
+//    public String AddAsignaturasGet(Model model) {
+//        model.addAttribute("asignatura", new Asignaturas());
+//        return ADD_ASIGNATURAS;
+//    }
+//
+//    @GetMapping("updateasignaturasget")
+//    public String UpdateAsginaturasGet(Model model, Asignaturas asignatura) {
+//        model.addAttribute("asignatura", asignatura);
+//        return UPDATE_ASIGNATURAS;
+//    }
+//    // FIN GET'S DE ASIGNATURAS
+//
+//
+//    // INICIO POST'S DE ASIGNATURAS
+//    @PostMapping("addasignaturaspost")
+//    public String AddAsignaturasPost(@ModelAttribute(name = "asignatura") Asignaturas asignatura) {
+//        ArrayList<Asignaturas> listado_asignaturas = new ArrayList<>();
+//        listado_asignaturas.add(asignatura);
+//        asignaturasServiceImpl.GuardarAsignaturas(listado_asignaturas);
+//        return "redirect:listasignaturasget";
+//    }
+//
+//    @PostMapping("updateasignaturaspost")
+//    public String UpdateAsignaturasPost() {
+//        //Crear metodo de actualizacion de asignaturas
+//        return "redirect:listasignaturasget";
+//    }
+//
+//    @PostMapping("deleteasignaturaspost")
+//    public String DeleteAsignaturasPost() {
+//        //Crear metodo de borrado de asignaturas
+//        return "redirect:listasignaturasget";
+//    }
+//    // FIN POST'S DE ASIGNATURAS
+//
+////  FIN GET'S Y POST'S DE ASIGNATURAS
 
 
 //  INICIO GET's y POST's DE ALUMNOS
 
     // INICIO GET'S DE ALUMNOS
     @GetMapping("listalumnosget")
-    public String ListAlumnosGet(Model model) {
+    public String ListAlumnosGet(Model model, @RequestParam(value = "url") String url) {
         model.addAttribute("alumnos", alumnosServiceImpl.listAllAlumnos());
+        model.addAttribute("url", url);
         return LIST_ALUMNOS;
     }
 
@@ -112,38 +135,70 @@ public class CUIBController {
 
 
     // INICIO POST'S DE ALUMNOS
+    @PostMapping("addalumnospost")
+    public String AddAlumnosPost(@ModelAttribute(name = "alumno") Alumnos alumno) {
+        alumnosServiceImpl.addAlumnos(alumno);
+        return "redirect:listalumnosget";
+    }
 
+    @PostMapping("updatealumnospost")
+    public String UpdateAlumnosPost(@ModelAttribute(name = "alumno") Alumnos alumno) {
+        alumnosServiceImpl.updateAlumnos(alumno);
+        return "redirect:listalumnosget";
+    }
+
+    @PostMapping("delalumnospost")
+    public String DelAlumnosPost(@RequestParam(name = "ids") ArrayList<Long> ids) {
+        alumnosServiceImpl.delbyid(ids);
+        return "redirect:listalumnosget";
+    }
     // FIN POST'S DE ALUMNOS
 
 //  FIN GET'S Y POST'S DE ALUMNOS
 
 
-//  INICIO GET's y POST's DE USUARIOS
-
-    // INICIO GET'S DE USUARIOS
-    @GetMapping("listusuariosget")
-    public String ListUsuariosGet(Model model) {
-        model.addAttribute("usuarios", usuariosServiceImpl.listAllUsuarios());
-        return LIST_USERS;
-    }
-
-    @GetMapping("addusuariosget")
-    public String AddUsuariosGet(Model model) {
-        model.addAttribute("usuario", new Usuarios());
-        return ADD_USERS;
-    }
-
-    @GetMapping("updateusuariosget")
-    public String UpdateUsuariosGet(Model model, Usuarios usuario) {
-        model.addAttribute("usuario", usuario);
-        return UPDATE_USERS;
-    }
-    // FIN GET'S DE USUARIOS
-
-
-    // INICIO POST'S DE USUARIOS
-
-    // FIN POST'S DE USUARIOS
-
-//  FIN GET'S Y POST'S DE USUARIOS
+////  INICIO GET's y POST's DE USUARIOS
+//
+//    // INICIO GET'S DE USUARIOS
+//    @GetMapping("listusuariosget")
+//    public String ListUsuariosGet(Model model) {
+//        model.addAttribute("usuarios", usuariosServiceImpl.listAllUsuarios());
+//        return LIST_USERS;
+//    }
+//
+//    @GetMapping("addusuariosget")
+//    public String AddUsuariosGet(Model model) {
+//        model.addAttribute("usuario", new Usuarios());
+//        return ADD_USERS;
+//    }
+//
+//    @GetMapping("updateusuariosget")
+//    public String UpdateUsuariosGet(Model model, Usuarios usuario) {
+//        model.addAttribute("usuario", usuario);
+//        return UPDATE_USERS;
+//    }
+//    // FIN GET'S DE USUARIOS
+//
+//
+//    // INICIO POST'S DE USUARIOS
+//    @PostMapping("addusuariospost")
+//    public String AddUsuariosPost(@ModelAttribute(name = "usuario") Usuarios usuarios){
+//        usuariosServiceImpl.addUsuarios(usuarios);
+//        return "redirect:listusuariosget";
+//    }
+//
+//    @PostMapping("updateusuariospost")
+//    public String UpdateUsuariosPost(@ModelAttribute (name = "usuario") Usuarios usuarios){
+//        usuariosServiceImpl.updateUsuarios(usuarios);
+//        return "redirect:listusuariosget";
+//    }
+//
+//    @PostMapping("delusuariosspost")
+//    public String DelUsuariosPost(@RequestParam (name = "ids") ArrayList<Long> ids){
+//        usuariosServiceImpl.delbyid(ids);
+//        return "redirect:listusuariosget";
+//    }
+//    // FIN POST'S DE USUARIOS
+//
+////  FIN GET'S Y POST'S DE USUARIOS
 }

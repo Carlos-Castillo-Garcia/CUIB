@@ -15,10 +15,11 @@
         <th>Provincia</th>
         <th>Pais</th>
         <th>Telefono</th>
+        <th>Asignatura</th>
     </tr>
     </thead>
     <tbody>
-    <tr th:each="i : ${alumnos}">
+    <tr th:each="i, iterator : ${alumnos}">
         <th><span th:text="${i.nombre}"></span></th>
         <th><span th:text="${i.apellidos}"></span></th>
         <th><span th:text="${i.direccion}"></span></th>
@@ -26,8 +27,11 @@
         <th><span th:text="${i.provincia}"></span></th>
         <th><span th:text="${i.pais}"></span></th>
         <th><span th:text="${i.telefono}"></span></th>
+        <th><span th:text="${i.id_asignatura}"></span></th>
+        <th><input type="checkbox" th:value="${iterator.index}" th:name="id"></th>
     </tr>
     </tbody>
 </table>
+<button><a style="text-decoration: none; color: black" th:href="${url}">Siguiente</a></button>
 </body>
 </html>

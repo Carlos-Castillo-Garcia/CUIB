@@ -15,11 +15,12 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each="i : ${asignaturas}">
+    <tr th:each="i, iterator : ${asignaturas}">
         <th><span th:text="${i.nombre}"></span></th>
         <th><span th:text="${i.curso}"></span></th>
         <th><span th:text="${i.horas}"></span></th>
         <th><span th:text="${i.cuatrimestre}"></span></th>
+        <th><input type="checkbox" th:value="${iterator.index}" th:name="id"></th>
     </tr>
     </tbody>
 </table>

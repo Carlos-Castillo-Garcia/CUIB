@@ -62,12 +62,11 @@ public class Asignaturas {
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder();
-        sb.append("#").append(id);
+        sb.append(id);
         sb.append("#").append(nombre);
         sb.append("#").append(curso);
         sb.append("#").append(horas);
         sb.append("#").append(cuatrimestre);
-        sb.append("#");
         return sb.toString();
     }
 }
