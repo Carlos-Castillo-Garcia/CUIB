@@ -2,6 +2,7 @@ package com.eep.CUIB.Controller;
 
 import com.eep.CUIB.Component.LogComponent;
 import com.eep.CUIB.Entity.Alumnos;
+import com.eep.CUIB.Model.ModelAlumnos;
 import com.eep.CUIB.ServicesImpl.AlumnosServiceImpl;
 import com.eep.CUIB.ServicesImpl.AsignaturasServiceImpl;
 import com.eep.CUIB.ServicesImpl.UsuariosServiceImpl;
@@ -9,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -136,15 +139,23 @@ public class CUIBController {
 
     // INICIO POST'S DE ALUMNOS
     @PostMapping("addalumnospost")
-    public String AddAlumnosPost(@ModelAttribute(name = "alumno") Alumnos alumno) {
-        alumnosServiceImpl.addAlumnos(alumno);
-        return "redirect:listalumnosget";
+    public String AddAlumnosPost(@Validated @ModelAttribute(name = "alumno") ModelAlumnos alumno, BindingResult result) {
+        if (result.hasErrors()){
+            return ADD_ALUMNOS;
+        }else{
+            alumnosServiceImpl.addAlumnos(alumnosServiceImpl.Model_Entity_Alumnos(alumno));
+            return "redirect:listalumnosget?url=a";
+        }
     }
 
     @PostMapping("updatealumnospost")
-    public String UpdateAlumnosPost(@ModelAttribute(name = "alumno") Alumnos alumno) {
-        alumnosServiceImpl.updateAlumnos(alumno);
-        return "redirect:listalumnosget";
+    public String UpdateAlumnosPost(@Validated @ModelAttribute(name = "alumno") ModelAlumnos alumno, BindingResult result) {
+        if (result.hasErrors()){
+            return UPDATE_ALUMNOS;
+        }else{
+            alumnosServiceImpl.updateAlumnos(alumnosServiceImpl.Model_Entity_Alumnos(alumno));
+            return "redirect:listalumnosget?url=a";
+        }
     }
 
     @PostMapping("delalumnospost")

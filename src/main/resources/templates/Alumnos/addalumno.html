@@ -3,49 +3,95 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+
 </head>
 <body>
     <h1>Agregacion de nuevos Alumnos</h1>
-    <form action="#" th:action="@{/addalumnospost}" th:object="${alumno}" method="post">
+    <form name="alumnos" id="alumnos" action="#" th:action="@{/addalumnospost}" th:object="${alumno}" method="post" onsubmit="process(event)">
         <div style="display: flex; flex-direction: column">
             <div>
                 <label>Nombre</label>
                 <input type="text" th:field="${alumno.nombre}">
+                <div>
+                    <span th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}" style="color: red"></span>
+                </div>
             </div>
             <div>
                 <label>apellidos</label>
                 <input type="text" th:field="${alumno.apellidos}">
+                <div>
+                    <span th:if="${#fields.hasErrors('apellidos')}" th:errors="*{apellidos}" style="color: red"></span>
+                </div>
             </div>
             <div>
                 <label>direccion</label>
                 <input type="text" th:field="${alumno.direccion}">
+                <div>
+                    <span th:if="${#fields.hasErrors('direccion')}" th:errors="*{direccion}" style="color: red"></span>
+                </div>
             </div>
             <div>
                 <label>localidad</label>
                 <input type="text" th:field="${alumno.localidad}">
+                <div>
+                    <span th:if="${#fields.hasErrors('localidad')}" th:errors="*{localidad}" style="color: red"></span>
+                </div>
             </div>
             <div>
                 <label>provincia</label>
                 <input type="text" th:field="${alumno.provincia}">
+                <div>
+                    <span th:if="${#fields.hasErrors('provincia')}" th:errors="*{provincia}" style="color: red"></span>
+                </div>
             </div>
             <div>
                 <label>pais</label>
                 <input type="text" th:field="${alumno.pais}">
+                <div>
+                    <span th:if="${#fields.hasErrors('pais')}" th:errors="*{pais}" style="color: red"></span>
+                </div>
             </div>
             <div>
                 <label>telefono</label>
-                <select>
-                    <option></option>
-                </select>
-                <input type="text" th:field="${alumno.telefono}">
+                <input id="phone" type="tel" name="phone" value="" th:field="${alumno.telefono}"/>
+                <div>
+                    <span th:if="${#fields.hasErrors('telefono')}" th:errors="*{telefono}" style="color: red"></span>
+                </div>
             </div>
         </div>
         <div>
             <div>
                 <label>Asignaturas</label>
+                <table>
+                    <thead>
+                        <th></th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th><span></span></th>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
-        <input type="submit" value="submit">
+        <input type="submit" value="submit" onclick="prueba(event)">
     </form>
 </body>
+<script th:inline="javascript">
+    const phoneInputField = document.querySelector("#phone");
+    const phoneInput = window.intlTelInput(phoneInputField, {
+        preferredCountries: ["de", "us", "in", "es"],
+        utilsScript:
+            "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+    });
+    const form = document.getElementById("alumnos");
+    function prueba(event){
+        event.preventDefault();
+        let phoneNumber = phoneInput.getNumber();
+        document.alumnos.phone.value = phoneNumber;
+        form.submit();
+    }
+</script>
 </html>

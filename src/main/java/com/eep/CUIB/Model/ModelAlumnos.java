@@ -1,6 +1,5 @@
 package com.eep.CUIB.Model;
 
-
 import javax.validation.constraints.NotBlank;
 
 public class ModelAlumnos {
