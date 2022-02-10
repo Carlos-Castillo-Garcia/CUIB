@@ -63,6 +63,7 @@ public class AlumnosServiceImpl implements AlumnosService {
         alumno.setProvincia(modelAlumnos.getProvincia());
         alumno.setPais(modelAlumnos.getPais());
         alumno.setTelefono(modelAlumnos.getTelefono());
+        alumno.setId_asignatura(modelAlumnos.getId_asignatura());
 
         return alumno;
     }

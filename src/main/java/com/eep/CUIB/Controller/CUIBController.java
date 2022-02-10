@@ -126,6 +126,7 @@ public class CUIBController {
     @GetMapping("addalumnosget")
     public String AddAlumnosGet(Model model) {
         model.addAttribute("alumno", new Alumnos());
+        model.addAttribute("asignaturas", asignaturasServiceImpl.LeerAsignaturas());
         return ADD_ALUMNOS;
     }
 

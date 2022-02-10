@@ -1,5 +1,7 @@
 package com.eep.CUIB.Model;
 
+import org.aspectj.bridge.IMessage;
+
 import javax.validation.constraints.NotBlank;
 
 public class ModelAlumnos {
@@ -19,6 +21,7 @@ public class ModelAlumnos {
     String pais;
     @NotBlank(message = "Rellene el campo porfavor")
     String telefono;
+    int id_asignatura;
 
     public ModelAlumnos() {
     }
@@ -26,7 +29,7 @@ public class ModelAlumnos {
     public ModelAlumnos(Long id, String nombre,
                         String apellidos, String direccion,
                         String localidad, String provincia,
-                        String pais, String telefono) {
+                        String pais, String telefono, int id_asignatura) {
         this.id = id;
         this.nombre = nombre;
         this.apellidos = apellidos;
@@ -35,6 +38,7 @@ public class ModelAlumnos {
         this.provincia = provincia;
         this.pais = pais;
         this.telefono = telefono;
+        this.id_asignatura = id_asignatura;
     }
 
     public Long getId() {
@@ -62,6 +66,10 @@ public class ModelAlumnos {
         return telefono;
     }
 
+    public int getId_asignatura() {
+        return id_asignatura;
+    }
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -87,6 +95,10 @@ public class ModelAlumnos {
         this.telefono = telefono;
     }
 
+    public void setId_asignatura(int id_asignatura) {
+        this.id_asignatura = id_asignatura;
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder();
@@ -97,6 +109,7 @@ public class ModelAlumnos {
         sb.append(provincia);
         sb.append(pais);
         sb.append(telefono);
+        sb.append(id_asignatura);
         return sb.toString();
     }
 }
