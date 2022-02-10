@@ -117,7 +117,7 @@ public class CUIBController {
 
     // INICIO GET'S DE ALUMNOS
     @GetMapping("listalumnosget")
-    public String ListAlumnosGet(Model model, @RequestParam(value = "url") String url) {
+    public String ListAlumnosGet(Model model, @RequestParam(value = "url", required = false) String url) {
         model.addAttribute("alumnos", alumnosServiceImpl.listAllAlumnos());
         model.addAttribute("url", url);
         return LIST_ALUMNOS;
