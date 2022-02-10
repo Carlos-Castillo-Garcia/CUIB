@@ -5,6 +5,28 @@
     <title>Title</title>
 </head>
 <body>
-
+<h1>Agregacion de nuevos Alumnos</h1>
+<form action="#" th:action="@{updateasignaturaspost}" th:object="${asignatura}" method="post">
+    <div style="display: flex; flex-direction: column">
+        <input type="hidden" th:field="${asignatura.id}">
+        <div>
+            <label>Nombre</label>
+            <input type="text" th:field="${asignatura.nombre}">
+        </div>
+        <div>
+            <label>Curso</label>
+            <input type="number" th:field="${asignatura.curso}">
+        </div>
+        <div>
+            <label>Horas</label>
+            <input type="number" th:field="${asignatura.horas}">
+        </div>
+        <div>
+            <label>Cuatrimestre</label>
+            <input type="number" th:field="${asignatura.cuatrimestre}">
+        </div>
+    </div>
+    <input type="submit" value="submit">
+</form>
 </body>
 </html>

@@ -20,6 +20,8 @@ public class AsignaturasServiceImpl implements AsignaturasService {
     FileWriter fw = null;
     BufferedWriter bw = null;
 
+    ArrayList <Asignaturas> datos = new ArrayList();
+
     @Autowired
     @Qualifier("AsignaturasComponent")
     private LogComponent logComponent;
@@ -94,7 +96,76 @@ public class AsignaturasServiceImpl implements AsignaturasService {
     }
 
     @Override
-    public String buscarAsignaturas() {
-        return null;
+    public String GuardarAsignaturas_BM(ArrayList<Asignaturas> lista_datos) {
+        BufferedWriter bw = null;
+        try {
+            if(lista_datos.size()>0) {
+                bw = new BufferedWriter(new FileWriter(AsignaturasFile));
+                for (int i = 0; i < lista_datos.size(); i++) {
+                    String datos = lista_datos.get(i).toString();
+                    bw.write(datos + "\n");
+                }
+            }else{
+                System.out.println("prubeas");
+            }
+            bw.close();
+        } catch (IOException e) {
+            System.out.println("pruebas");
+        }
+        return "Camionero guardado con exito";
+    }
+
+    @Override
+    public String BajaAsignaturasId(int id){
+        BufferedWriter bw;
+        String mensaje = null;
+        datos = (ArrayList<Asignaturas>) this.LeerAsignaturas();
+        for (int i = 0; i < datos.size(); i++){
+            if(datos.get(i).getId() == id){
+                datos.remove(i);
+                mensaje = "Camionero dado de baja";
+                break;
+            }else {
+                mensaje = "No se ha encontrado ningun camionero con ese nombre.";
+            }
+        }
+        this.GuardarAsignaturas_BM(datos);
+        return mensaje;
+    }
+
+    @Override
+    public String ModificacionAsignaturas(Asignaturas asignatura) {
+        this.datos = (ArrayList<Asignaturas>) this.LeerAsignaturas();
+        String mensaje = null;
+        for (int i = 0; i < datos.size(); i++){
+            if(datos.get(i).getId() == asignatura.getId()){
+                datos.get(i).setId(asignatura.getId());
+                datos.get(i).setNombre(asignatura.getNombre());
+                datos.get(i).setCurso(asignatura.getCurso());
+                datos.get(i).setHoras(asignatura.getHoras());
+                datos.get(i).setCuatrimestre(asignatura.getCuatrimestre());
+                mensaje = "Camionero modificado correctamente";
+                break;
+            }else{
+                mensaje = "No se ha encontrado ningun camionero";
+            }
+        }
+        this.GuardarAsignaturas_BM(datos);
+        return mensaje;
+    }
+
+    @Override
+    public Asignaturas buscarAsignaturas(int id) {
+        Asignaturas encontrada = new Asignaturas();
+        datos = (ArrayList<Asignaturas>) this.LeerAsignaturas();
+
+        for (int i = 0; i < datos.size(); i++){
+            if(datos.get(i).getId() == id){
+                encontrada = datos.get(i);
+                break;
+            }
+        }
+
+        return encontrada;
     }
 }

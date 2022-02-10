@@ -5,21 +5,37 @@
     <title>Title</title>
 </head>
 <body>
-<table>
-    <thead>
-    <tr>
-        <th>Nombre</th>
-        <th>Password</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="i, iterator : ${usuarios}">
-        <th><span th:text="${i.nombre}"></span></th>
-        <th><span th:text="${i.password}"></span></th>
-        <th><input type="checkbox" th:value="${iterator.index}" th:name="id"></th>
-    </tr>
-    </tbody>
-</table>
-<button><a style="text-decoration: none; color: black" href="/addalumnosget">Add Alumnos</a></button>
+<form action="#" name="listado" id="listado">
+    <table>
+        <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Contraseña</th>
+            <th>Permisos</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="i : ${user}">
+            <th><span th:text="${i.nombre}"></span></th>
+            <th><span th:text="${i.password}"></span></th>
+            <th><span th:text="${i.permisos}"></span></th>
+            <th><input type="radio" th:value="${i.id}" th:name="ids"></th>
+        </tr>
+        </tbody>
+    </table>
+    <input type="submit" value="Actualizar" onclick="update()">
+    <input type="submit" value="Borrar" onclick="deletes()">
+</form>
 </body>
+<script th:inline="javascript">
+    const form = document.getElementById("listado");
+    function update(){
+        form.setAttribute('action', 'updateusuariosget')
+        form.setAttribute('method', 'get')
+    }
+    function deletes(){
+        form.setAttribute('action', 'delusuariospost')
+        form.setAttribute('method', 'post')
+    }
+</script>
 </html>

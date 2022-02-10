@@ -35,27 +35,21 @@ public class AlumnosServiceImpl implements AlumnosService {
     }
 
     @Override
-    public Optional<Alumnos> findbyid(int id) {
+    public Optional<Alumnos> findbyid(Long id) {
         Optional<Alumnos> alumno_id = alumnosJPARepository.findById(id);
         return alumno_id;
     }
 
     @Override
-    public void delbyid(ArrayList<Long> iterator) {
-        ArrayList<Long> ids = new ArrayList<>();
-        for (int i = 0; i < iterator.size(); i++) {
-            long iterador = iterator.get(i);
-            ids.add(alumnosJPARepository.findAll().get((int) iterador).getId());
-        }
-        for (int i = 0; i < ids.size(); i++) {
-            alumnosJPARepository.deleteById(ids.get(i));
-        }
+    public void delbyid(Long ids) {
+        alumnosJPARepository.deleteById(ids);
     }
 
     @Override
     public Alumnos Model_Entity_Alumnos(ModelAlumnos modelAlumnos) {
         Alumnos alumno = new Alumnos();
 
+        alumno.setId(modelAlumnos.getId());
         alumno.setNombre(modelAlumnos.getNombre());
         alumno.setApellidos(modelAlumnos.getApellidos());
         alumno.setDireccion(modelAlumnos.getDireccion());

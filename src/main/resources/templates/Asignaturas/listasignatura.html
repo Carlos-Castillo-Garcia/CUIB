@@ -1,28 +1,44 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
-<table>
-    <thead>
-    <tr>
-        <th>Nombre</th>
-        <th>Curso</th>
-        <th>Horas</th>
-        <th>Cuatrimestre</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="i, iterator : ${asignaturas}">
-        <th><span th:text="${i.nombre}"></span></th>
-        <th><span th:text="${i.curso}"></span></th>
-        <th><span th:text="${i.horas}"></span></th>
-        <th><span th:text="${i.cuatrimestre}"></span></th>
-        <th><input type="checkbox" th:value="${iterator.index}" th:name="id"></th>
-    </tr>
-    </tbody>
-</table>
+<form action="#" name="listado" id="listado">
+    <table>
+        <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Curso</th>
+            <th>Horas</th>
+            <th>Cuatrimestre</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="i : ${asignaturas}">
+            <th><span th:text="${i.nombre}"></span></th>
+            <th><span th:text="${i.curso}"></span></th>
+            <th><span th:text="${i.horas}"></span></th>
+            <th><span th:text="${i.cuatrimestre}"></span></th>
+            <th><input type="radio" th:value="${i.id}" th:name="ids"></th>
+        </tr>
+        </tbody>
+    </table>
+    <input type="submit" value="Actualizar" onclick="update()">
+    <input type="submit" value="Borrar" onclick="deletes()">
+
+</form>
 </body>
+<script th:inline="javascript">
+    const form = document.getElementById("listado");
+    function update(){
+        form.setAttribute('action', 'updateasignaturasget')
+        form.setAttribute('method', 'get')
+    }
+    function deletes(){
+        form.setAttribute('action', 'delasignaturaspost')
+        form.setAttribute('method', 'post')
+    }
+</script>
 </html>

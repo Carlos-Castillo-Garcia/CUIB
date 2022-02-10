@@ -5,33 +5,47 @@
     <title>Title</title>
 </head>
 <body>
-<table>
-    <thead>
-    <tr>
-        <th>Nombre</th>
-        <th>Apellidos</th>
-        <th>Direccion</th>
-        <th>Localidad</th>
-        <th>Provincia</th>
-        <th>Pais</th>
-        <th>Telefono</th>
-        <th>Asignatura</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="i, iterator : ${alumnos}">
-        <th><span th:text="${i.nombre}"></span></th>
-        <th><span th:text="${i.apellidos}"></span></th>
-        <th><span th:text="${i.direccion}"></span></th>
-        <th><span th:text="${i.localidad}"></span></th>
-        <th><span th:text="${i.provincia}"></span></th>
-        <th><span th:text="${i.pais}"></span></th>
-        <th><span th:text="${i.telefono}"></span></th>
-        <th><span th:text="${i.id_asignatura}"></span></th>
-        <th><input type="checkbox" th:value="${iterator.index}" th:name="id"></th>
-    </tr>
-    </tbody>
-</table>
-<button><a style="text-decoration: none; color: black" th:href="${url}">Siguiente</a></button>
+<form id="listado" name="listado">
+    <table>
+        <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Apellidos</th>
+            <th>Direccion</th>
+            <th>Localidad</th>
+            <th>Provincia</th>
+            <th>Pais</th>
+            <th>Telefono</th>
+            <th>Asignatura</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="i : ${alumnos}">
+            <th><span th:text="${i.nombre}"></span></th>
+            <th><span th:text="${i.apellidos}"></span></th>
+            <th><span th:text="${i.direccion}"></span></th>
+            <th><span th:text="${i.localidad}"></span></th>
+            <th><span th:text="${i.provincia}"></span></th>
+            <th><span th:text="${i.pais}"></span></th>
+            <th><span th:text="${i.telefono}"></span></th>
+            <th><span th:text="${i.id_asignatura}"></span></th>
+            <th><input type="radio" th:value="${i.id}" th:name="ids"></th>
+        </tr>
+        </tbody>
+    </table>
+    <input type="submit" value="Actualizar" onclick="update()">
+    <input type="submit" value="Borrar" onclick="deletes()">
+</form>
 </body>
+<script th:inline="javascript">
+    const form = document.getElementById("listado");
+    function update(){
+        form.setAttribute('action', 'updatealumnosget')
+        form.setAttribute('method', 'get')
+    }
+    function deletes(){
+        form.setAttribute('action', 'delalumnospost')
+        form.setAttribute('method', 'post')
+    }
+</script>
 </html>

@@ -35,21 +35,14 @@ public class UsuariosServiceImpl implements UsuariosService {
     }
 
     @Override
-    public Optional<Usuarios> findbyid(int id) {
+    public Optional<Usuarios> findbyid(Long id) {
         Optional<Usuarios> user = usuariosJPARepository.findById(id);
         return user;
     }
 
     @Override
-    public void delbyid(ArrayList<Long> ids_usuarios) {
-        ArrayList<Long> ids = new ArrayList<>();
-        for (int i = 0; i < ids_usuarios.size(); i++) {
-            long iterador = ids_usuarios.get(i);
-            ids.add(usuariosJPARepository.findAll().get((int) iterador).getId());
-        }
-        for (int i = 0; i < ids.size(); i++) {
-            usuariosJPARepository.deleteById(ids.get(i));
-        }
+    public void delbyid(Long ids_usuarios) {
+            usuariosJPARepository.deleteById(ids_usuarios);
     }
 
     @Override
@@ -62,4 +55,12 @@ public class UsuariosServiceImpl implements UsuariosService {
 
         return user;
     }
+
+    @Override
+    public Usuarios Validar_User(Usuarios user) {
+        Usuarios user_valid = new Usuarios();
+
+        return user_valid;
+    }
+
 }

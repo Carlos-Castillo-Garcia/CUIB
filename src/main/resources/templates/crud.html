@@ -12,87 +12,52 @@
             <h3 style="text-align: center">Alumnos</h3>
             <input type="submit" class="button" id="AlumnoAdd" th:name="url" value="Añadir alumno"
                    onclick="addalumnos()">
-            <input type="submit" class="button" id="AlumnoUpdate" th:name="url" value="Actualizar Alumno"
-                   onclick="updatealumnos()">
-            <input type="submit" class="button" id="AlumnoDelete" th:name="url" value="Borrar Alumno"
-                   onclick="delalumnos()">
+            <input type="submit" class="button" id="ListAlumnos" th:name="url" value="Listar alumnos"
+                   onclick="listalumnos()">
         </div>
         <div style="margin: 10px">
             <h3 style="text-align: center">Asignaturas</h3>
             <input type="submit" class="button" id="AsignaturaAdd" th:name="url" value="Añadir Asignatura"
                    onclick="addasignaturas()">
-            <input type="submit" class="button" id="AsignaturaUpdate" th:name="url" value="Actualizar Asignatura"
-                   onclick="updateasignaturas()">
-            <input type="submit" class="button" id="AsignaturaDelete" th:name="url" value="Borrar Asignatura"
-                   onclick="delasignaturas()">
+            <input type="submit" class="button" id="ListAsignaturas" th:name="url" value="Listar Asignatura"
+                   onclick="listasignaturas()">
         </div>
         <div style="margin: 10px">
             <h3 style="text-align: center">Usuarios</h3>
             <input type="submit" class="button" id="UsuariosAdd" th:name="url" value="Añadir Usuarios"
                    onclick="addusers()">
-            <input type="submit" class="button" id="UsuariosUpdate" th:name="url" value="Actualizar Usuarios"
-                   onclick="updateusers()">
-            <input type="submit" class="button" id="UsuariosDelete" th:name="url" value="Borrar Usuarios"
-                   onclick="delusers()">
+            <input type="submit" class="button" id="ListUsuarios" th:name="url" value="Listar Usuarios"
+                   onclick="listusers()">
         </div>
     </div>
 </form>
 </body>
 <script th:inline="javascript">
     const form = document.getElementById('botones');
-    let submit = ''
 
     function addalumnos() {
         form.setAttribute('action', '/addalumnosget');
-        submit = 'AlumnoAdd';
     }
 
-    function updatealumnos() {
+    function listalumnos() {
         form.setAttribute('action', '/listalumnosget');
-        submit = 'AlumnoUpdate';
-        document.getElementById(submit).setAttribute('value', 'updatealumnosget')
-    }
-
-    function delalumnos() {
-        form.setAttribute('action', '/listalumnosget');
-        submit = 'AlumnoDelete';
-        document.getElementById(submit).setAttribute('value', 'delalumnospost')
     }
 
     function addasignaturas() {
         form.setAttribute('action', 'addasignaturasget');
-        submit = 'AsignaturaAdd';
-        document.getElementById(submit).setAttribute('value', 'a')
     }
 
-    function updateasignaturas() {
+    function listasignaturas() {
         form.setAttribute('action', 'listasignaturasget');
-        submit = 'AsignaturaUpdate';
-        document.getElementById(submit).setAttribute('value', 'a')
-    }
-
-    function delasignaturas() {
-        form.setAttribute('action', 'listasignaturasget');
-        submit = 'AsignaturaDelete';
-        document.getElementById(submit).setAttribute('value', 'a')
     }
 
     function addusers() {
         form.setAttribute('action', 'addusuariosget');
-        submit = 'UsuariosAdd';
-        document.getElementById(submit).setAttribute('value', 'a')
     }
 
-    function updateusers() {
+    function listusers() {
         form.setAttribute('action', 'listusuariosget');
-        submit = 'UsuariosUpdate';
-        document.getElementById(submit).setAttribute('value', 'a')
     }
 
-    function delusers() {
-        form.setAttribute('action', 'listusuariosget');
-        submit = 'UsuariosDelete';
-        document.getElementById(submit).setAttribute('value', 'a')
-    }
 </script>
 </html>

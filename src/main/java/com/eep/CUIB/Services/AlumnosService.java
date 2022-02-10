@@ -14,9 +14,9 @@ public interface AlumnosService {
 
     Alumnos updateAlumnos(Alumnos alumnos);
 
-    Optional<Alumnos> findbyid(int id);
+    Optional<Alumnos> findbyid(Long id);
 
-    void delbyid(ArrayList<Long> ids);
+    void delbyid(Long ids);
 
     Alumnos Model_Entity_Alumnos(ModelAlumnos alumnos);
 }
