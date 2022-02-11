@@ -13,16 +13,28 @@
             <input type="text" th:field="${asignatura.nombre}">
         </div>
         <div>
+            <span th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}" style="color: red"></span>
+        </div>
+        <div>
             <label>Curso</label>
             <input type="number" th:field="${asignatura.curso}">
+        </div>
+        <div>
+            <span th:if="${#fields.hasErrors('curso')}" th:errors="*{curso}" style="color: red"></span>
         </div>
         <div>
             <label>Horas</label>
             <input type="number" th:field="${asignatura.horas}">
         </div>
         <div>
+            <span th:if="${#fields.hasErrors('horas')}" th:errors="*{horas}" style="color: red"></span>
+        </div>
+        <div>
             <label>Cuatrimestre</label>
             <input type="number" th:field="${asignatura.cuatrimestre}">
+        </div>
+        <div>
+            <span th:if="${#fields.hasErrors('cuatrimestre')}" th:errors="*{cuatrimestre}" style="color: red"></span>
         </div>
     </div>
     <input type="submit" value="submit">

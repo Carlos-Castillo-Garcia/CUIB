@@ -7,17 +7,18 @@ import java.util.List;
 import java.util.Optional;
 
 public interface UsuariosService {
-    List<Usuarios> listAllUsuarios();
+    public abstract List<Usuarios> listAllUsuarios();
 
-    Usuarios addUsuarios(Usuarios usuarios);
+    public abstract Usuarios addUsuarios(Usuarios usuarios);
 
-    Usuarios updateUsuarios(Usuarios usuarios);
+    public abstract Usuarios updateUsuarios(Usuarios usuarios);
 
-    Optional<Usuarios> findbyid(Long id);
+    public abstract Optional<Usuarios> findbyid(Long id);
 
-    void delbyid(Long ids);
+    public abstract void delbyid(Long ids);
 
-    Usuarios Model_Entity_Usuarios(ModelUsers usuarios);
+    public abstract Usuarios Model_Entity_Usuarios(ModelUsers usuarios);
 
-    String Validar_User(Usuarios user);
+    public abstract String Validar_User(Usuarios user);
+    public abstract boolean User_Correcto(Usuarios user);
 }

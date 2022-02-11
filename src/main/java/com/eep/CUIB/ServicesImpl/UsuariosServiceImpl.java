@@ -61,17 +61,29 @@ public class UsuariosServiceImpl implements UsuariosService {
     public String Validar_User(Usuarios user_a_validar) {
         ArrayList<Usuarios> listado = (ArrayList<Usuarios>) listAllUsuarios();
         String css = "";
-        for (int i = 0; i < listado.size(); i++) {
-            if (listado.get(i).getNombre().equals(user_a_validar.getNombre()) &&
-                    listado.get(i).getPassword().equals(user_a_validar.getPassword())) {
-                if (listado.get(i).getPermisos() == 1) {
+        for (Usuarios usuarios : listado) {
+            if (usuarios.getNombre().equals(user_a_validar.getNombre()) &&
+                    usuarios.getPassword().equals(user_a_validar.getPassword())) {
+                if (usuarios.getPermisos() == 1) {
                     css = "/css/permisosadmin.css";
-                } else if (listado.get(i).getPermisos() == 2) {
+                } else if (usuarios.getPermisos() == 2) {
                     css = "/css/permisosuser.css";
                 }
             }
         }
         return css;
+    }
+
+    @Override
+    public boolean User_Correcto(Usuarios user){
+        ArrayList<Usuarios> listado = (ArrayList<Usuarios>) listAllUsuarios();
+        for (Usuarios usuarios : listado) {
+            if (usuarios.getNombre().equals(user.getNombre()) &&
+                    usuarios.getPassword().equals(user.getPassword())) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }

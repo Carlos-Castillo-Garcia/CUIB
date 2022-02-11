@@ -71,12 +71,15 @@ public class CUIBController {
 
     @PostMapping("logged")
     public String logger(@Valid @ModelAttribute(name = "user") ModelUsers user, BindingResult result, Model model) {
-        if (result.hasErrors() && usuariosServiceImpl.Validar_User(usuariosServiceImpl.Model_Entity_Usuarios(user)) == "") {
+        if (result.hasErrors()) {
             return INDEX;
-        } else {
+        } else if(usuariosServiceImpl.User_Correcto(usuariosServiceImpl.Model_Entity_Usuarios(user))){
             model.addAttribute("css_permisos", usuariosServiceImpl.Validar_User(usuariosServiceImpl.Model_Entity_Usuarios(user)));
+            logComponent.info("Usuario Loggeado correctamente");
             return CRUD;
         }
+        logComponent.errores("El usuario no es correcto");
+        return INDEX;
     }
 
 //  INICIO GET's y POST's DE ASIGNATURAS
@@ -86,6 +89,7 @@ public class CUIBController {
     public String ListAsignaturasGet(Model model, @RequestParam(value = "url", required = false) String url) {
         model.addAttribute("asignaturas", asignaturasServiceImpl.LeerAsignaturas());
         model.addAttribute("url", url);
+        logComponent.info("Asignaturas listadas correctamente");
         return LIST_ASIGNATURAS;
     }
 
@@ -109,6 +113,7 @@ public class CUIBController {
         ArrayList<Asignaturas> listado_asignaturas = new ArrayList<>();
         listado_asignaturas.add(asignatura);
         asignaturasServiceImpl.GuardarAsignaturas(listado_asignaturas);
+        logComponent.info("Asignatura Guardada correctamente");
         return "redirect:listasignaturasget";
     }
 
@@ -118,6 +123,7 @@ public class CUIBController {
             return UPDATE_ASIGNATURAS;
         }else {
             asignaturasServiceImpl.ModificacionAsignaturas(asignaturas);
+            logComponent.info("Asignatura Modificada Correctamente");
             return "redirect:listasignaturasget";
         }
     }
@@ -125,6 +131,7 @@ public class CUIBController {
     @PostMapping("delasignaturaspost")
     public String DeleteAsignaturasPost(@RequestParam (value = "ids") int id) {
         asignaturasServiceImpl.BajaAsignaturasId(id);
+        logComponent.info("Asignatura dada de baja correctamente");
         return "redirect:listasignaturasget";
     }
     // FIN POST'S DE ASIGNATURAS
@@ -138,6 +145,7 @@ public class CUIBController {
     @GetMapping("listalumnosget")
     public String ListAlumnosGet(Model model) {
         model.addAttribute("alumnos", alumnosServiceImpl.listAllAlumnos());
+        logComponent.info("Alumnos listado correctamente");
         return LIST_ALUMNOS;
     }
 
@@ -166,6 +174,7 @@ public class CUIBController {
             return ADD_ALUMNOS;
         }else{
             alumnosServiceImpl.addAlumnos(alumnosServiceImpl.Model_Entity_Alumnos(alumno));
+            logComponent.info("Alumno añadido correctamente");
             return "redirect:listalumnosget?url=a";
         }
     }
@@ -176,6 +185,7 @@ public class CUIBController {
             return UPDATE_ALUMNOS;
         }else{
             alumnosServiceImpl.updateAlumnos(alumnosServiceImpl.Model_Entity_Alumnos(alumno));
+            logComponent.info("Alumno modificado correctamente");
             return "redirect:listalumnosget?url=updatealumnosget";
         }
     }
@@ -183,6 +193,7 @@ public class CUIBController {
     @PostMapping("delalumnospost")
     public String DelAlumnosPost(@RequestParam(name = "ids") Long ids) {
         alumnosServiceImpl.delbyid(ids);
+        logComponent.info("Alumno borrado correctamente");
         return "redirect:listalumnosget?url=delalumnospost";
     }
     // FIN POST'S DE ALUMNOS
@@ -197,6 +208,7 @@ public class CUIBController {
     public String ListUsuariosGet(Model model, @RequestParam(value = "url", required = false) String url) {
         model.addAttribute("user", usuariosServiceImpl.listAllUsuarios());
         model.addAttribute("url", url);
+        logComponent.info("Usuarios listado correctamente");
         return LIST_USERS;
     }
 
@@ -216,17 +228,23 @@ public class CUIBController {
 
     // INICIO POST'S DE USUARIOS
     @PostMapping("addusuariospost")
-    public String AddUsuariosPost(@ModelAttribute(name = "usuario") Usuarios usuarios){
-        usuariosServiceImpl.addUsuarios(usuarios);
-        return "redirect:listusuariosget";
+    public String AddUsuariosPost(@Valid @ModelAttribute(name = "usuario") ModelUsers usuarios, BindingResult result){
+        if (result.hasErrors()){
+            return ADD_USERS;
+        }else {
+            usuariosServiceImpl.addUsuarios(usuariosServiceImpl.Model_Entity_Usuarios(usuarios));
+            logComponent.info("Usuario añadido correctamente");
+            return "redirect:listusuariosget";
+        }
     }
 
     @PostMapping("updateusuariospost")
-    public String UpdateUsuariosPost(@Valid @ModelAttribute (name = "usuario") Usuarios usuarios, BindingResult result){
+    public String UpdateUsuariosPost(@Valid @ModelAttribute (name = "usuario") ModelUsers usuarios, BindingResult result){
         if (result.hasErrors()){
             return UPDATE_USERS;
         }else {
-            usuariosServiceImpl.updateUsuarios(usuarios);
+            usuariosServiceImpl.updateUsuarios(usuariosServiceImpl.Model_Entity_Usuarios(usuarios));
+            logComponent.info("Usuario modificado correctamente");
             return "redirect:listusuariosget";
         }
     }
@@ -234,6 +252,7 @@ public class CUIBController {
     @PostMapping("delusuariospost")
     public String DelUsuariosPost(@RequestParam (name = "ids") Long ids){
         usuariosServiceImpl.delbyid(ids);
+        logComponent.info("Usuario borrado correctamente");
         return "redirect:listusuariosget";
     }
     // FIN POST'S DE USUARIOS
