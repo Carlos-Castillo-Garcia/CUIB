@@ -1,10 +1,16 @@
 package com.eep.CUIB.Model;
 
+import javax.validation.constraints.NotBlank;
+
 public class ModelUsers {
 
     Long id;
+
+    @NotBlank(message = "Rellene el nombre de usuario")
     String nombre;
+    @NotBlank(message = "Escriba una contraseña")
     String password;
+
     Long permisos;
 
     public ModelUsers() {

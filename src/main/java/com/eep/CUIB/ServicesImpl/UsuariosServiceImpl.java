@@ -52,15 +52,26 @@ public class UsuariosServiceImpl implements UsuariosService {
         user.setId(usuarios.getId());
         user.setNombre(usuarios.getNombre());
         user.setPassword(usuarios.getPassword());
+        user.setPermisos(usuarios.getPermisos());
 
         return user;
     }
 
     @Override
-    public Usuarios Validar_User(Usuarios user) {
-        Usuarios user_valid = new Usuarios();
-
-        return user_valid;
+    public String Validar_User(Usuarios user_a_validar) {
+        ArrayList<Usuarios> listado = (ArrayList<Usuarios>) listAllUsuarios();
+        String css = "";
+        for (int i = 0; i < listado.size(); i++) {
+            if (listado.get(i).getNombre().equals(user_a_validar.getNombre()) &&
+                    listado.get(i).getPassword().equals(user_a_validar.getPassword())) {
+                if (listado.get(i).getPermisos() == 1) {
+                    css = "/css/permisosadmin.css";
+                } else if (listado.get(i).getPermisos() == 2) {
+                    css = "/css/permisosuser.css";
+                }
+            }
+        }
+        return css;
     }
 
 }

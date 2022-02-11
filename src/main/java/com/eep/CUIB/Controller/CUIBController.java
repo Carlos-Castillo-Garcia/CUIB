@@ -5,6 +5,7 @@ import com.eep.CUIB.Entity.Alumnos;
 import com.eep.CUIB.Entity.Usuarios;
 import com.eep.CUIB.Model.Asignaturas;
 import com.eep.CUIB.Model.ModelAlumnos;
+import com.eep.CUIB.Model.ModelUsers;
 import com.eep.CUIB.ServicesImpl.AlumnosServiceImpl;
 import com.eep.CUIB.ServicesImpl.AsignaturasServiceImpl;
 import com.eep.CUIB.ServicesImpl.UsuariosServiceImpl;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
 import javax.validation.Valid;
 import java.util.ArrayList;
 
@@ -25,6 +27,7 @@ import java.util.ArrayList;
 public class CUIBController {
 
     private static final String CRUD = "crud";
+    private static final String INDEX = "loggin";
 
     private static final String ADD_ASIGNATURAS = "\\Asignaturas\\addasignatura";
     private static final String LIST_ASIGNATURAS = "\\Asignaturas\\listasignatura";
@@ -37,8 +40,6 @@ public class CUIBController {
     private static final String ADD_USERS = "\\Users\\adduser";
     private static final String LIST_USERS = "\\Users\\listuser";
     private static final String UPDATE_USERS = "\\Users\\updateuser";
-
-    private static int id = 0;
 
     // INICIO INSTANCIAS DE IMP
     @Autowired
@@ -62,10 +63,20 @@ public class CUIBController {
     // FIN INSTANCIAS COMPONENTS
 
 
-    @GetMapping("getcrud")
-    public String CRUDget(Model model) {
-        //model.addAttribute("css_permisos", "/css/permisos.css");
-        return CRUD;
+    @GetMapping("/")
+    public String Index(Model model) {
+        model.addAttribute("user", new Usuarios());
+        return INDEX;
+    }
+
+    @PostMapping("logged")
+    public String logger(@Valid @ModelAttribute(name = "user") ModelUsers user, BindingResult result, Model model) {
+        if (result.hasErrors() && usuariosServiceImpl.Validar_User(usuariosServiceImpl.Model_Entity_Usuarios(user)) == "") {
+            return INDEX;
+        } else {
+            model.addAttribute("css_permisos", usuariosServiceImpl.Validar_User(usuariosServiceImpl.Model_Entity_Usuarios(user)));
+            return CRUD;
+        }
     }
 
 //  INICIO GET's y POST's DE ASIGNATURAS

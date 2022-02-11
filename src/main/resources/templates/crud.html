@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link href="@{css_permisos}" th:href="${css_permisos}" rel="stylesheet">
 </head>
 <body>
 <h1 style="text-align: center"><span> Usted se ha loggeado como "ad o user"</span></h1>
 <form name="formulario" id="botones" action="#" method="get">
-    <div style="display: flex; flex-wrap: wrap; flex-direction: row; align-content: space-between; justify-content: center">
+    <div class="admin">
         <div style="margin: 10px">
             <h3 style="text-align: center">Alumnos</h3>
             <input type="submit" class="button" id="AlumnoAdd" th:name="url" value="Añadir alumno"
@@ -29,6 +30,12 @@
             <input type="submit" class="button" id="ListUsuarios" th:name="url" value="Listar Usuarios"
                    onclick="listusers()">
         </div>
+    </div>
+    <div class="user">
+        <input type="submit" class="button" th:name="url" value="Listar alumnos"
+               onclick="listalumnos()">
+        <input type="submit" class="button" th:name="url" value="Listar Asignatura"
+               onclick="listasignaturas()">
     </div>
 </form>
 </body>
