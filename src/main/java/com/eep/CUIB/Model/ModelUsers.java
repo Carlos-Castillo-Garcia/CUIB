@@ -10,7 +10,6 @@ public class ModelUsers {
     String nombre;
     @NotBlank(message = "Escriba una contraseña")
     String password;
-
     Long permisos;
 
     public ModelUsers() {

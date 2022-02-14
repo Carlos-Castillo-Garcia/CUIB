@@ -9,56 +9,56 @@
 </head>
 <body>
 <h1>Agregacion de nuevos Alumnos</h1>
-<form name="alumnos" id="alumnos" action="#" th:action="@{/updatealumnospost}" th:object="${alumno}" method="post" onsubmit="process(event)">
+<form name="alumnos" id="alumnos" action="#" th:action="@{/updatealumnospost}" method="post" onsubmit="process(event)">
     <div style="display: flex; flex-direction: column">
         <input type="hidden" th:field="${alumno.id}">
         <div>
             <label>Nombre</label>
             <input type="text" th:field="${alumno.nombre}">
             <div>
-                <span th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}" style="color: red"></span>
+                <span th:if="${#fields.hasErrors('alumno.nombre')}" th:errors="*{alumno.nombre}" style="color: red"></span>
             </div>
         </div>
         <div>
             <label>apellidos</label>
             <input type="text" th:field="${alumno.apellidos}">
             <div>
-                <span th:if="${#fields.hasErrors('apellidos')}" th:errors="*{apellidos}" style="color: red"></span>
+                <span th:if="${#fields.hasErrors('alumno.apellidos')}" th:errors="*{alumno.apellidos}" style="color: red"></span>
             </div>
         </div>
         <div>
             <label>direccion</label>
             <input type="text" th:field="${alumno.direccion}">
             <div>
-                <span th:if="${#fields.hasErrors('direccion')}" th:errors="*{direccion}" style="color: red"></span>
+                <span th:if="${#fields.hasErrors('alumno.direccion')}" th:errors="*{alumno.direccion}" style="color: red"></span>
             </div>
         </div>
         <div>
             <label>localidad</label>
             <input type="text" th:field="${alumno.localidad}">
             <div>
-                <span th:if="${#fields.hasErrors('localidad')}" th:errors="*{localidad}" style="color: red"></span>
+                <span th:if="${#fields.hasErrors('alumno.localidad')}" th:errors="*{alumno.localidad}" style="color: red"></span>
             </div>
         </div>
         <div>
             <label>provincia</label>
             <input type="text" th:field="${alumno.provincia}">
             <div>
-                <span th:if="${#fields.hasErrors('provincia')}" th:errors="*{provincia}" style="color: red"></span>
+                <span th:if="${#fields.hasErrors('alumno.provincia')}" th:errors="*{alumno.provincia}" style="color: red"></span>
             </div>
         </div>
         <div>
             <label>pais</label>
             <input type="text" th:field="${alumno.pais}">
             <div>
-                <span th:if="${#fields.hasErrors('pais')}" th:errors="*{pais}" style="color: red"></span>
+                <span th:if="${#fields.hasErrors('alumno.pais')}" th:errors="*{alumno.pais}" style="color: red"></span>
             </div>
         </div>
         <div>
             <label>telefono</label>
             <input id="phone" type="tel" name="phone" value="" th:field="${alumno.telefono}"/>
             <div>
-                <span th:if="${#fields.hasErrors('telefono')}" th:errors="*{telefono}" style="color: red"></span>
+                <span th:if="${#fields.hasErrors('alumno.telefono')}" th:errors="*{alumno.telefono}" style="color: red"></span>
             </div>
         </div>
     </div>

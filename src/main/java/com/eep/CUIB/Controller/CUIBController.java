@@ -9,8 +9,10 @@ import com.eep.CUIB.Model.ModelUsers;
 import com.eep.CUIB.ServicesImpl.AlumnosServiceImpl;
 import com.eep.CUIB.ServicesImpl.AsignaturasServiceImpl;
 import com.eep.CUIB.ServicesImpl.UsuariosServiceImpl;
+import org.hibernate.dialect.function.AvgWithArgumentCastFunction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.autoconfigure.amqp.AbstractRabbitListenerContainerFactoryConfigurer;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -36,6 +38,7 @@ public class CUIBController {
     private static final String ADD_ALUMNOS = "\\Alumnos\\addalumno";
     private static final String LIST_ALUMNOS = "\\Alumnos\\listalumno";
     private static final String UPDATE_ALUMNOS = "\\Alumnos\\updatealumno";
+    private static final String LIST_ASIGNATURAS_ALUMNO = "\\Alumnos\\listar_asignaturas_alumno";
 
     private static final String ADD_USERS = "\\Users\\adduser";
     private static final String LIST_USERS = "\\Users\\listuser";
@@ -109,12 +112,16 @@ public class CUIBController {
 
     // INICIO POST'S DE ASIGNATURAS
     @PostMapping("addasignaturaspost")
-    public String AddAsignaturasPost(@ModelAttribute(name = "asignatura") Asignaturas asignatura) {
-        ArrayList<Asignaturas> listado_asignaturas = new ArrayList<>();
-        listado_asignaturas.add(asignatura);
-        asignaturasServiceImpl.GuardarAsignaturas(listado_asignaturas);
-        logComponent.info("Asignatura Guardada correctamente");
-        return "redirect:listasignaturasget";
+    public String AddAsignaturasPost(@Valid @ModelAttribute(name = "asignatura") Asignaturas asignatura, BindingResult result) {
+        if (result.hasErrors()){
+            return ADD_ASIGNATURAS;
+        }else {
+            ArrayList<Asignaturas> listado_asignaturas = new ArrayList<>();
+            listado_asignaturas.add(asignatura);
+            asignaturasServiceImpl.GuardarAsignaturas(listado_asignaturas);
+            logComponent.info("Asignatura Guardada correctamente");
+            return "redirect:listasignaturasget";
+        }
     }
 
     @PostMapping("updateasignaturaspost")
@@ -145,6 +152,7 @@ public class CUIBController {
     @GetMapping("listalumnosget")
     public String ListAlumnosGet(Model model) {
         model.addAttribute("alumnos", alumnosServiceImpl.listAllAlumnos());
+//        model.addAttribute("asignaturas", alumnosServiceImpl.Listado_Asignaturas_usuario(alumnosServiceImpl.listAllAlumnos()));
         logComponent.info("Alumnos listado correctamente");
         return LIST_ALUMNOS;
     }
@@ -163,17 +171,25 @@ public class CUIBController {
 
         return UPDATE_ALUMNOS;
     }
+
+    @GetMapping("asig_x_alumnos")
+    public String asignaturas_x_alumnos(Model model, @RequestParam (value = "id_alumno") Long id_alumno){
+        model.addAttribute("asignaturas", alumnosServiceImpl.Listado_Asignaturas_usuario(alumnosServiceImpl.findbyid(id_alumno)));
+        return LIST_ASIGNATURAS_ALUMNO;
+    }
     // FIN GET'S DE ALUMNOS
 
 
     // INICIO POST'S DE ALUMNOS
     @PostMapping("addalumnospost")
-    public String AddAlumnosPost(@Valid @ModelAttribute(name = "alumno") ModelAlumnos alumno, BindingResult result, Model model) {
+    public String AddAlumnosPost(@Valid @ModelAttribute(name = "alumno") ModelAlumnos alumno,
+                                 @RequestParam(value = "asignaturas") ArrayList<Integer> asignaturas, BindingResult result, Model model) {
         if (result.hasErrors()){
             model.addAttribute("asignaturas", asignaturasServiceImpl.LeerAsignaturas());
             return ADD_ALUMNOS;
         }else{
-            alumnosServiceImpl.addAlumnos(alumnosServiceImpl.Model_Entity_Alumnos(alumno));
+            System.out.println(asignaturas);
+            alumnosServiceImpl.addAlumnos(alumnosServiceImpl.Model_Entity_Alumnos(alumno), asignaturas);
             logComponent.info("Alumno añadido correctamente");
             return "redirect:listalumnosget?url=a";
         }

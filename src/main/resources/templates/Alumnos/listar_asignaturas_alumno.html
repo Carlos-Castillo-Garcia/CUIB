@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table>
+    <thead>
+    <tr>
+        <th>Nombre</th>
+        <th>Curso</th>
+        <th>Horas</th>
+        <th>Cuatrimestre</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="i : ${asignaturas}">
+        <th><span th:text="${i.nombre}"></span></th>
+        <th><span th:text="${i.curso}"></span></th>
+        <th><span th:text="${i.horas}"></span></th>
+        <th><span th:text="${i.cuatrimestre}"></span></th>
+    </tr>
+    </tbody>
+</table>
+<input type="button" onclick="cambia_de_pagina()" value="Listar Alumnos">
+</body>
+<script>
+    function cambia_de_pagina(){
+        location.href="/listalumnosget";
+    }
+</script>
+</html>

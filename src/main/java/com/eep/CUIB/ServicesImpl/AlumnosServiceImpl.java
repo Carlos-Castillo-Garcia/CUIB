@@ -1,6 +1,7 @@
 package com.eep.CUIB.ServicesImpl;
 
 import com.eep.CUIB.Entity.Alumnos;
+import com.eep.CUIB.Model.Asignaturas;
 import com.eep.CUIB.Model.ModelAlumnos;
 import com.eep.CUIB.Repository.AlumnosJPARepository;
 import com.eep.CUIB.Services.AlumnosService;
@@ -19,13 +20,23 @@ public class AlumnosServiceImpl implements AlumnosService {
     @Qualifier("AlumnosJPARepository")
     private AlumnosJPARepository alumnosJPARepository;
 
+    @Autowired
+    @Qualifier("AsignaturasServiceImpl")
+    private AsignaturasServiceImpl asignaturasService;
+
     @Override
     public List<Alumnos> listAllAlumnos() {
         return alumnosJPARepository.findAll();
     }
 
     @Override
-    public Alumnos addAlumnos(Alumnos alumnos) {
+    public Alumnos addAlumnos(Alumnos alumnos, ArrayList<Integer> asignaturas) {
+        String asignaturas_id = "";
+        for (int i = 0; i < asignaturas.size(); i++) {
+            asignaturas_id = asignaturas_id + "#" + asignaturas.get(i);
+        }
+        System.out.println(asignaturas_id);
+        alumnos.setId_asignatura(asignaturas_id);
         return alumnosJPARepository.save(alumnos);
     }
 
@@ -60,5 +71,18 @@ public class AlumnosServiceImpl implements AlumnosService {
         alumno.setId_asignatura(modelAlumnos.getId_asignatura());
 
         return alumno;
+    }
+
+    @Override
+    public List<Asignaturas> Listado_Asignaturas_usuario(Optional<Alumnos> alumnos) {
+        List<Asignaturas> asignaturas_filtradas = new ArrayList<>();
+        String[] asig_usuario = null;
+        for (int i = 0; i < alumnos.get().getId_asignatura().length(); i++) {
+            asig_usuario = alumnos.get().getId_asignatura().split("#");
+        }
+        for (int j = 0; j < asig_usuario.length; j++) {
+            asignaturas_filtradas.add(asignaturasService.buscarAsignaturas(Integer.parseInt(asig_usuario[j])));
+        }
+        return asignaturas_filtradas;
     }
 }

@@ -25,14 +25,14 @@ public class Alumnos {
     @Column(name = "telefono", nullable = false)
     String telefono;
     @Column(name = "id_asignatura")
-    int id_asignatura;
+    String id_asignatura;
 
     public Alumnos() {
     }
     public Alumnos(Long id, String nombre,
                    String apellidos, String direccion,
                    String localidad, String provincia,
-                   String pais, String telefono, int id_asignatura) {
+                   String pais, String telefono, String id_asignatura) {
         this.id = id;
         this.nombre = nombre;
         this.apellidos = apellidos;
@@ -68,7 +68,7 @@ public class Alumnos {
     public String getTelefono() {
         return telefono;
     }
-    public int getId_asignatura() {
+    public String getId_asignatura() {
         return id_asignatura;
     }
 
@@ -96,7 +96,7 @@ public class Alumnos {
     public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
-    public void setId_asignatura(int id_asignatura) {
+    public void setId_asignatura(String id_asignatura) {
         this.id_asignatura = id_asignatura;
     }
 

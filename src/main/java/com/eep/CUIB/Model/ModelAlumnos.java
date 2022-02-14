@@ -21,7 +21,7 @@ public class ModelAlumnos {
     String pais;
     @NotBlank(message = "Rellene el campo porfavor")
     String telefono;
-    int id_asignatura;
+    String id_asignatura;
 
     public ModelAlumnos() {
     }
@@ -29,7 +29,7 @@ public class ModelAlumnos {
     public ModelAlumnos(Long id, String nombre,
                         String apellidos, String direccion,
                         String localidad, String provincia,
-                        String pais, String telefono, int id_asignatura) {
+                        String pais, String telefono, String id_asignatura) {
         this.id = id;
         this.nombre = nombre;
         this.apellidos = apellidos;
@@ -65,8 +65,7 @@ public class ModelAlumnos {
     public String getTelefono() {
         return telefono;
     }
-
-    public int getId_asignatura() {
+    public String getId_asignatura() {
         return id_asignatura;
     }
 
@@ -94,8 +93,7 @@ public class ModelAlumnos {
     public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
-
-    public void setId_asignatura(int id_asignatura) {
+    public void setId_asignatura(String id_asignatura) {
         this.id_asignatura = id_asignatura;
     }
 

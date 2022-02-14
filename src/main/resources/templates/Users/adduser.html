@@ -6,7 +6,7 @@
 </head>
 <body>
 <h1>Agregacion de nuevos Alumnos</h1>
-<form action="#" th:action="@{/addusuariospost}" th:object="${usuario}" method="post">
+<form action="#" th:action="@{/addusuariospost}" method="post">
     <div style="display: flex; flex-direction: column">
         <div>
             <span th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}" style="color: red"></span>

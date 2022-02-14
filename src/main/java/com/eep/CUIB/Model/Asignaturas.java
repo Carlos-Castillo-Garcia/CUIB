@@ -1,11 +1,21 @@
 package com.eep.CUIB.Model;
 
+import javax.validation.constraints.*;
+
 public class Asignaturas {
 
     int id;
+    @NotBlank(message = "Rellene el campo")
     String nombre;
+    @NotNull(message = "Rellene el campo")
+    @Min(value = 1)
+    @Max(value = 4)
     int curso;
+    @Min(value = 0)
+    @Max(value = 99)
     int horas;
+    @Min(value = 1)
+    @Max(value = 2)
     int cuatrimestre;
 
     public Asignaturas() {

@@ -28,7 +28,7 @@
             <th><span th:text="${i.provincia}"></span></th>
             <th><span th:text="${i.pais}"></span></th>
             <th><span th:text="${i.telefono}"></span></th>
-            <th><span th:text="${i.id_asignatura}"></span></th>
+            <th><input type="submit" th:value="${i.id}" th:name="id_alumno" onclick="asignaturas()"></th>
             <th><input type="radio" th:value="${i.id}" th:name="ids"></th>
         </tr>
         </tbody>
@@ -46,6 +46,10 @@
     function deletes(){
         form.setAttribute('action', 'delalumnospost')
         form.setAttribute('method', 'post')
+    }
+    function asignaturas(){
+        form.setAttribute('action', 'asig_x_alumnos')
+        form.setAttribute('method', 'get')
     }
 </script>
 </html>
