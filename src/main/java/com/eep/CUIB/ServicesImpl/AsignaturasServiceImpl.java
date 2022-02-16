@@ -110,7 +110,7 @@ public class AsignaturasServiceImpl implements AsignaturasService {
             }
             bw.close();
         } catch (IOException e) {
-            System.out.println("pruebas");
+            logComponent.errores("Error en el cierre del BufferWriter y el FileReader de la lectura de los Camioneros");
         }
         return "Camionero guardado con exito";
     }
@@ -120,16 +120,20 @@ public class AsignaturasServiceImpl implements AsignaturasService {
         BufferedWriter bw;
         String mensaje = null;
         datos = (ArrayList<Asignaturas>) this.LeerAsignaturas();
-        for (int i = 0; i < datos.size(); i++){
-            if(datos.get(i).getId() == id){
-                datos.remove(i);
-                mensaje = "Camionero dado de baja";
-                break;
-            }else {
-                mensaje = "No se ha encontrado ningun camionero con ese nombre.";
+        if(datos.size() > 10){
+            for (int i = 0; i < datos.size(); i++){
+                if(datos.get(i).getId() == id){
+                    datos.remove(i);
+                    mensaje = "Asignatura dado de baja";
+                    break;
+                }else {
+                    mensaje = "No se ha encontrado ninguna Asignatura.";
+                }
             }
+            this.GuardarAsignaturas_BM(datos);
+        }else {
+            mensaje = "No hay Asignatura suficientes para el borrado de ella";
         }
-        this.GuardarAsignaturas_BM(datos);
         return mensaje;
     }
 
@@ -144,10 +148,10 @@ public class AsignaturasServiceImpl implements AsignaturasService {
                 datos.get(i).setCurso(asignatura.getCurso());
                 datos.get(i).setHoras(asignatura.getHoras());
                 datos.get(i).setCuatrimestre(asignatura.getCuatrimestre());
-                mensaje = "Camionero modificado correctamente";
+                mensaje = "Asignatura modificado correctamente";
                 break;
             }else{
-                mensaje = "No se ha encontrado ningun camionero";
+                mensaje = "No se ha encontrado ninguna Asignatura";
             }
         }
         this.GuardarAsignaturas_BM(datos);

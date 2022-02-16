@@ -65,9 +65,9 @@ public class UsuariosServiceImpl implements UsuariosService {
             if (usuarios.getNombre().equals(user_a_validar.getNombre()) &&
                     usuarios.getPassword().equals(user_a_validar.getPassword())) {
                 if (usuarios.getPermisos() == 1) {
-                    css = "/css/permisosadmin.css";
+                    css = "/static/css/permisosadmin.css";
                 } else if (usuarios.getPermisos() == 2) {
-                    css = "/css/permisosuser.css";
+                    css = "/static/css/permisosuser.css";
                 }
             }
         }
