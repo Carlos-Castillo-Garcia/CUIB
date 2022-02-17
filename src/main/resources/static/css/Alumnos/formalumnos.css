@@ -7,24 +7,16 @@
     font-size: 25px;
 }
 
-.campo{
-    width: 200px;
-    justify-items: end;
-}
 .labes{
     text-align: center;
     padding: 5px;
 }
 
-.tabla{
+.tabla {
     margin-bottom: 10px;
 }
 
-.formulario{
-    display: flex;
-    justify-content: space-between;
-    width: 1300px;
+.campos {
+    display: inline-block;
 }
-.prueba{
-    width: 10px;
-}
+

@@ -12,7 +12,7 @@
 <body>
 <header>
     <h1>Colegio Universitario Internacional BITCOIN</h1>
-    <input class="btn boton_menu" type="button" onclick="cambia_de_pagina()" value="Menu">
+    <input class="btn boton_menu" type="button" onclick="menu();" value="Menu">
 </header>
 <main>
     <div class="centro">
@@ -42,8 +42,7 @@
                         <th><span th:text="${i.provincia}"></span></th>
                         <th><span th:text="${i.pais}"></span></th>
                         <th><span th:text="${i.telefono}"></span></th>
-                        <th class="btn_tabla"><input class="sin_admin" type="radio" th:value="${i.id}" th:name="ids">
-                        </th>
+                        <th class="btn_tabla"><input type="radio" th:value="${i.id}" th:name="ids"></th>
                     </tr>
                     </tbody>
                 </table>
@@ -56,13 +55,14 @@
             </div>
         </form>
     </div>
-    <!--    <div class="margenes"></div>-->
 </main>
 <footer>
     <h6>Creado por Carlos Castillo</h6>
 </footer>
 </body>
 <script th:inline="javascript">
-
+    function menu() {
+        location.href = "/menu"
+    }
 </script>
 </html>

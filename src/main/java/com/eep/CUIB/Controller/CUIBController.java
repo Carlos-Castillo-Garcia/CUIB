@@ -25,7 +25,7 @@ import java.util.ArrayList;
 
 @Controller
 public class CUIBController {
-    private static Usuarios UserLog = new Usuarios();
+    private static ModelUsers UserLog = new ModelUsers();
 
     private static final String CRUD = "crud";
     private static final String INDEX = "loggin";
@@ -77,14 +77,25 @@ public class CUIBController {
     public String logger(@Valid @ModelAttribute(name = "user") ModelUsers user, BindingResult result, Model model) {
         if (result.hasErrors()) {
             return INDEX;
-        } else if(usuariosServiceImpl.User_Correcto(usuariosServiceImpl.Model_Entity_Usuarios(user))){
+        } else if (usuariosServiceImpl.User_Correcto(usuariosServiceImpl.Model_Entity_Usuarios(user))) {
             model.addAttribute("css_permisos", usuariosServiceImpl.Validar_User(usuariosServiceImpl.Model_Entity_Usuarios(user)));
-            UserLog = usuariosServiceImpl.Model_Entity_Usuarios(user);
+            UserLog = user;
             logComponent.info("Usuario Loggeado correctamente");
             return CRUD;
         }
         logComponent.errores("El usuario no es correcto");
         return INDEX;
+    }
+
+    @GetMapping("/menu")
+    public String menu(Model model) {
+        if (usuariosServiceImpl.User_Correcto(usuariosServiceImpl.Model_Entity_Usuarios(UserLog))) {
+            model.addAttribute("css_permisos", usuariosServiceImpl.Validar_User(usuariosServiceImpl.Model_Entity_Usuarios(UserLog)));
+            return CRUD;
+        } else {
+            model.addAttribute("user", new Usuarios());
+            return INDEX;
+        }
     }
 
 //  INICIO GET's y POST's DE ASIGNATURAS
@@ -94,7 +105,7 @@ public class CUIBController {
     public String ListAsignaturasGet(Model model, @RequestParam(value = "url", required = false) String url) {
         model.addAttribute("asignaturas", asignaturasServiceImpl.LeerAsignaturas());
         model.addAttribute("url", url);
-        model.addAttribute("css_permisos", usuariosServiceImpl.Validar_User(UserLog));
+        model.addAttribute("css_permisos", usuariosServiceImpl.Validar_User(usuariosServiceImpl.Model_Entity_Usuarios(UserLog)));
         logComponent.info("Asignaturas listadas correctamente");
         return LIST_ASIGNATURAS;
     }
@@ -155,7 +166,7 @@ public class CUIBController {
     @GetMapping("listalumnosget")
     public String ListAlumnosGet(Model model) {
         model.addAttribute("alumnos", alumnosServiceImpl.listAllAlumnos());
-        model.addAttribute("css_permisos", usuariosServiceImpl.Validar_User(UserLog));
+        model.addAttribute("css_permisos", usuariosServiceImpl.Validar_User(usuariosServiceImpl.Model_Entity_Usuarios(UserLog)));
         logComponent.info("Alumnos listado correctamente");
         return LIST_ALUMNOS;
     }
@@ -186,12 +197,13 @@ public class CUIBController {
     // INICIO POST'S DE ALUMNOS
     @PostMapping("addalumnospost")
     public String AddAlumnosPost(@Valid @ModelAttribute(name = "alumno") ModelAlumnos alumno,
-                                 @RequestParam(value = "asignaturas") ArrayList<Integer> asignaturas, BindingResult result, Model model) {
-        if (result.hasErrors()){
+                                 @RequestParam(value = "asignaturas", required = false) ArrayList<Integer> asignaturas, BindingResult result, Model model) {
+        if (result.hasErrors()) {
             model.addAttribute("asignaturas", asignaturasServiceImpl.LeerAsignaturas());
             return ADD_ALUMNOS;
-        }else{
+        } else {
             System.out.println(asignaturas);
+
             alumnosServiceImpl.addAlumnos(alumnosServiceImpl.Model_Entity_Alumnos(alumno), asignaturas);
             logComponent.info("Alumno añadido correctamente");
             return "redirect:listalumnosget?url=a";

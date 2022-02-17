@@ -12,79 +12,64 @@
 <body>
 <header>
     <h1>Colegio Universitario Internacional BITCOIN</h1>
-    <input class="btn boton_menu" type="button" onclick="cambia_de_pagina()" value="Menu">
+    <input class="btn boton_menu" type="button" onclick="menu();" value="Menu">
 </header>
 <main>
     <div class="centro">
         <h1>Agregacion de nuevos Alumnos</h1>
         <form name="alumnos" id="alumnos" action="#" th:action="@{/addalumnospost}" method="post"
               onsubmit="process(event)">
-            <div class="formulario">
-                <div class="prueba">
-                    <div class="labes">
-                        <label>Nombre</label>
-                    </div>
+            <div class="campos">
+                <div class="campo">
+                    Nombre:
                     <input class="campo" type="text" th:field="${alumno.nombre}">
                     <div>
                         <span th:if="${#fields.hasErrors('alumno.nombre')}" th:errors="*{alumno.nombre}"
                               style="color: red"></span>
                     </div>
                 </div>
-                <div class="prueba">
-                    <div class="labes">
-                        <label>Apellidos</label>
-
-                    </div>
+                <div class="campo">
+                    Apellidos:
                     <input class="campo" type="text" th:field="${alumno.apellidos}">
                     <div>
                         <span th:if="${#fields.hasErrors('alumno.apellidos')}" th:errors="*{alumno.apellidos}"
                               style="color: red"></span>
                     </div>
                 </div>
-                <div class="prueba">
-                    <div class="labes">
-                        <label>Direccion</label>
-                    </div>
+                <div class="campo">
+                    Direccion:
                     <input class="campo" type="text" th:field="${alumno.direccion}">
                     <div>
                         <span th:if="${#fields.hasErrors('alumno.direccion')}" th:errors="*{alumno.direccion}"
                               style="color: red"></span>
                     </div>
                 </div>
-                <div class="prueba">
-                    <div class="labes">
-                        <label>Localidad</label>
-                    </div>
+                <div class="campo">
+                    Localidad:
                     <input class="campo" type="text" th:field="${alumno.localidad}">
                     <div>
                         <span th:if="${#fields.hasErrors('alumno.localidad')}" th:errors="*{alumno.localidad}"
                               style="color: red"></span>
                     </div>
                 </div>
-                <div class="prueba">
-                    <div class="labes">
-                        <label>Provincia</label>
-                    </div>
+                <div class="campo">
+                    Provincia:
                     <input class="campo" type="text" th:field="${alumno.provincia}">
                     <div>
                         <span th:if="${#fields.hasErrors('alumno.provincia')}" th:errors="*{alumno.provincia}"
                               style="color: red"></span>
                     </div>
                 </div>
-                <div class="prueba">
-                    <div class="labes">
-                        <label>Pais</label>
-                    </div>
+                <div class="campo">
+                    Pais:
                     <input class="campo" type="text" th:field="${alumno.pais}">
                     <div>
                         <span th:if="${#fields.hasErrors('alumno.pais')}" th:errors="*{alumno.pais}"
                               style="color: red"></span>
                     </div>
                 </div>
-                <div class="prueba">
-                    <div class="labes">
-                        <label>Telefono</label>
-                    </div>
+                <div class="campo">
+                    Telefono:
                     <input class="campo" id="phone" type="tel" name="phone" value="" th:field="${alumno.telefono}"/>
                     <div>
                         <span th:if="${#fields.hasErrors('alumno.telefono')}" th:errors="*{alumno.telefono}"
@@ -92,6 +77,8 @@
                     </div>
                 </div>
             </div>
+            <br>
+            <br>
             <div class="tabla">
                 <div class="labes">
                     <label>Asignaturas</label>
@@ -118,8 +105,9 @@
         </form>
     </div>
 </main>
-<footer></footer>
-
+<footer>
+    <h6>Creado por Carlos Castillo</h6>
+</footer>
 </body>
 <script th:inline="javascript">
     const phoneInputField = document.querySelector("#phone");
@@ -135,6 +123,10 @@
         let phoneNumber = phoneInput.getNumber();
         document.alumnos.phone.value = phoneNumber;
         form.submit();
+    }
+
+    function menu() {
+        location.href = "/menu"
     }
 </script>
 </html>

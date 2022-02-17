@@ -32,10 +32,13 @@ public class AlumnosServiceImpl implements AlumnosService {
     @Override
     public Alumnos addAlumnos(Alumnos alumnos, ArrayList<Integer> asignaturas) {
         String asignaturas_id = "";
-        for (int i = 0; i < asignaturas.size(); i++) {
-            asignaturas_id = asignaturas_id + asignaturas.get(i) + "#";
+        if (asignaturas == null) {
+            asignaturas_id = "0";
+        } else {
+            for (int i = 0; i < asignaturas.size(); i++) {
+                asignaturas_id = asignaturas_id + asignaturas.get(i) + "#";
+            }
         }
-        System.out.println(asignaturas_id);
         alumnos.setId_asignatura(asignaturas_id);
         return alumnosJPARepository.save(alumnos);
     }

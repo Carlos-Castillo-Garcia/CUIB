@@ -3,39 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link href="../../static/css/comun.css" rel="stylesheet">
+    <link th:href="${css_permisos}" rel="stylesheet">
+    <link href="../../static/css/Alumnos/listalumnos.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Rock+Salt' rel='stylesheet' type='text/css'>
 </head>
 <body>
-<form action="#" name="listado" id="listado">
-    <table>
-        <thead>
-        <tr>
-            <th>Nombre</th>
-            <th>Contraseña</th>
-            <th>Permisos</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="i : ${user}">
-            <th><span th:text="${i.nombre}"></span></th>
-            <th><span th:text="${i.password}"></span></th>
-            <th><span th:text="${i.permisos}"></span></th>
-            <th><input type="radio" th:value="${i.id}" th:name="ids"></th>
-        </tr>
-        </tbody>
-    </table>
-    <input type="submit" value="Actualizar" onclick="update()">
-    <input type="submit" value="Borrar" onclick="deletes()">
-</form>
+<header>
+    <h1>Colegio Universitario Internacional BITCOIN</h1>
+    <input class="btn boton_menu" type="button" onclick="menu();" value="Menu">
+</header>
+<main>
+    <div class="centro">
+        <form id="listado" name="listado" action="#">
+            <div class="tabla">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Contraseña</th>
+                        <th>Permisos</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="i : ${user}">
+                        <th><span th:text="${i.nombre}"></span></th>
+                        <th><span th:text="${i.password}"></span></th>
+                        <th><span th:text="${i.permisos}"></span></th>
+                        <th><input type="radio" th:value="${i.id}" th:name="ids"></th>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="botones">
+                <input class="sin_admin btn btn_update" id="update" type="submit" value="Actualizar"
+                       onclick="updates()">
+                <input class="sin_admin btn btn_delete" id="delete" type="submit" value="Borrar" onclick="deletes()">
+            </div>
+        </form>
+    </div>
+</main>
+<footer>
+    <h6>Creado por Carlos Castillo</h6>
+</footer>
 </body>
 <script th:inline="javascript">
     const form = document.getElementById("listado");
-    function update(){
+
+    function updates() {
         form.setAttribute('action', 'updateusuariosget')
         form.setAttribute('method', 'get')
     }
-    function deletes(){
-        form.setAttribute('action', 'delusuariospost')
+
+    function deletes() {
+        form.setAttribute('action', '/delusuariospost')
         form.setAttribute('method', 'post')
+    }
+
+    function menu() {
+        location.href = "/menu"
     }
 </script>
 </html>

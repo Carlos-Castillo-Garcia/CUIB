@@ -4,6 +4,11 @@ header div{
 .centro form{
     font-size: 25px;
 }
-.centro form div input{
+.centro form div input {
     font-size: 15px;
+}
+
+.boton_menu {
+    width: 150px;
+    background-color: red;
 }

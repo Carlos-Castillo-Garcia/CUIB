@@ -1,4 +1,4 @@
-1#Matematicas#1#35#2
+1#Matematicas#1#35#1
 2#Lengua#1#90#1
 3#Ciencias#3#0#2
 4#Programacion#4#82#2

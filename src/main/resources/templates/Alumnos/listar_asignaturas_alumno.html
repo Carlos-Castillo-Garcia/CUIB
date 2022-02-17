@@ -9,6 +9,7 @@
 <body>
 <header>
     <h1>Colegio Universitario Internacional BITCOIN</h1>
+    <input class="btn boton_menu" type="button" onclick="menu();" value="Menu">
 </header>
 <main>
     <div class="centro">
@@ -42,8 +43,12 @@
 </footer>
 </body>
 <script>
-    function cambia_de_pagina(){
-        location.href="/listalumnosget";
+    function cambia_de_pagina() {
+        location.href = "/listalumnosget";
+    }
+
+    function menu() {
+        location.href = "/menu"
     }
 </script>
 </html>

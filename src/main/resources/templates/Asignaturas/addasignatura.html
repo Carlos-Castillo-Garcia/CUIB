@@ -3,45 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link href="../../static/css/comun.css" rel="stylesheet">
+    <link href="../../static/css/asignaturas/listasignaturas.css" rel="stylesheet">
+    <link href="../../static/css/Alumnos/formalumnos.css" rel="stylesheet">
 </head>
 <body>
-<h1>Agregacion de nuevos Alumnos</h1>
-<form action="#" th:action="@{/addasignaturaspost}" method="post">
-    <div style="display: flex; flex-direction: column">
-        <div>
-            <label>Nombre</label>
-            <input type="text" th:field="${asignatura.nombre}">
-        </div>
-        <div>
-            <span th:if="${#fields.hasErrors('asignatura.nombre')}" th:errors="*{asignatura.nombre}" style="color: red"></span>
-        </div>
-        <div>
-            <label>Curso</label>
-            1º<input type="radio" value="1" th:field="${asignatura.curso}">
-            2º<input type="radio" value="2" th:field="${asignatura.curso}">
-            3º<input type="radio" value="3" th:field="${asignatura.curso}">
-            4º<input type="radio" value="4" th:field="${asignatura.curso}">
-        </div>
-        <div>
-            <span th:if="${#fields.hasErrors('asignatura.curso')}" th:errors="*{asignatura.curso}" style="color: red"></span>
-        </div>
-        <div>
-            <label>Horas</label>
-            <input type="number" th:field="${asignatura.horas}">
-        </div>
-        <div>
-            <span th:if="${#fields.hasErrors('asignatura.horas')}" th:errors="*{asignatura.horas}" style="color: red"></span>
-        </div>
-        <div>
-            <label>Cuatrimestre</label>
-            1º<input type="radio" value="1" th:field="${asignatura.cuatrimestre}">
-            2º<input type="radio" value="2" th:field="${asignatura.cuatrimestre}">
-        </div>
-        <div>
-            <span th:if="${#fields.hasErrors('asignatura.cuatrimestre')}" th:errors="*{asignatura.cuatrimestre}" style="color: red"></span>
-        </div>
+<header>
+    <h1>Colegio Universitario Internacional BITCOIN</h1>
+    <input class="btn boton_menu" type="button" onclick="menu();" value="Menu">
+</header>
+<main>
+    <div class="centro">
+        <h1>Agregacion de nuevas Asignaturas</h1>
+        <form action="#" th:action="@{/addasignaturaspost}" method="post">
+            <div class="campos">
+                <div class="campo">
+                    Nombre:
+                    <input class="campo" type="text" th:field="${asignatura.nombre}">
+                    <div>
+                        <span th:if="${#fields.hasErrors('asignatura.nombre')}" th:errors="*{asignatura.nombre}"
+                              style="color: red"></span>
+                    </div>
+                </div>
+                <div class="campo">
+                    Curso:
+                    1º<input type="radio" value="1" th:field="${asignatura.curso}">
+                    2º<input type="radio" value="2" th:field="${asignatura.curso}">
+                    3º<input type="radio" value="3" th:field="${asignatura.curso}">
+                    4º<input type="radio" value="4" th:field="${asignatura.curso}">
+                    <div>
+                        <span th:if="${#fields.hasErrors('asignatura.curso')}" th:errors="*{asignatura.curso}"
+                              style="color: red"></span>
+                    </div>
+                </div>
+                <div class="campo">
+                    Horas
+                    <input type="number" th:field="${asignatura.horas}">
+                    <div>
+                        <span th:if="${#fields.hasErrors('asignatura.horas')}" th:errors="*{asignatura.horas}"
+                              style="color: red"></span>
+                    </div>
+                </div>
+                <div class="campo">
+                    Cuatrimestre
+                    1º<input type="radio" value="1" th:field="${asignatura.cuatrimestre}">
+                    2º<input type="radio" value="2" th:field="${asignatura.cuatrimestre}">
+                    <div>
+                        <span th:if="${#fields.hasErrors('asignatura.cuatrimestre')}"
+                              th:errors="*{asignatura.cuatrimestre}" style="color: red"></span>
+                    </div>
+                </div>
+            </div>
+            <input class="btn btn_asig" type="submit" value="Guardar">
+        </form>
     </div>
-    <input type="submit" value="submit">
-</form>
+</main>
+<footer>
+    <h6>Creado por Carlos Castillo</h6>
+</footer>
 </body>
+<script>
+    function menu() {
+        location.href = "/menu"
+    }
+</script>
 </html>
