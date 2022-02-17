@@ -3,27 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link href="../../static/css/comun.css" rel="stylesheet">
+    <link href="../../static/css/asignaturas/listasignaturas.css" rel="stylesheet">
 </head>
 <body>
-<table>
-    <thead>
-    <tr>
-        <th>Nombre</th>
-        <th>Curso</th>
-        <th>Horas</th>
-        <th>Cuatrimestre</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="i : ${asignaturas}">
-        <th><span th:text="${i.nombre}"></span></th>
-        <th><span th:text="${i.curso}"></span></th>
-        <th><span th:text="${i.horas}"></span></th>
-        <th><span th:text="${i.cuatrimestre}"></span></th>
-    </tr>
-    </tbody>
-</table>
-<input type="button" onclick="cambia_de_pagina()" value="Listar Alumnos">
+<header>
+    <h1>Colegio Universitario Internacional BITCOIN</h1>
+</header>
+<main>
+    <div class="centro">
+        <div class="tabla">
+            <table>
+                <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Curso</th>
+                    <th>Horas</th>
+                    <th>Cuatrimestre</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="i : ${asignaturas}">
+                    <th><span th:text="${i.nombre}"></span></th>
+                    <th><span th:text="${i.curso}"></span></th>
+                    <th><span th:text="${i.horas}"></span></th>
+                    <th><span th:text="${i.cuatrimestre}"></span></th>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="botones">
+            <input class="btn btn_asig" type="button" onclick="cambia_de_pagina()" value="Listar Alumnos">
+        </div>
+    </div>
+</main>
+<footer>
+    <h6>Creado por Carlos Castillo</h6>
+</footer>
 </body>
 <script>
     function cambia_de_pagina(){

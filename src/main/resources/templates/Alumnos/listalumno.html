@@ -5,16 +5,16 @@
     <title>Title</title>
     <link href="../../static/css/comun.css" rel="stylesheet">
     <link th:href="${css_permisos}" rel="stylesheet">
-    <link href="../../static/css/Alumnos/listaAlumnos.css" rel="stylesheet">
+    <link href="../../static/css/Alumnos/listalumnos.css" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Rock+Salt' rel='stylesheet' type='text/css'>
     <script type="text/javascript" src="../../static/js/alumnosjs.js"></script>
 </head>
 <body>
 <header>
     <h1>Colegio Universitario Internacional BITCOIN</h1>
+    <input class="btn boton_menu" type="button" onclick="cambia_de_pagina()" value="Menu">
 </header>
 <main>
-    <!--    <div class="margenes"></div>-->
     <div class="centro">
         <form id="listado" name="listado">
             <div class="tabla">
@@ -33,15 +33,15 @@
                     </thead>
                     <tbody>
                     <tr th:each="i : ${alumnos}">
-                        <th><span th:text="${i.nombre}">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span></th>
-                        <th><span th:text="${i.apellidos}">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
+                        <th><span th:text="${i.nombre}"></span></th>
+                        <th><span th:text="${i.apellidos}"></span>
                         </th>
-                        <th><span th:text="${i.direccion}">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
+                        <th><span th:text="${i.direccion}"></span>
                         </th>
-                        <th><span th:text="${i.localidad}">asd</span></th>
-                        <th><span th:text="${i.provincia}">asd</span></th>
-                        <th><span th:text="${i.pais}">asd</span></th>
-                        <th><span th:text="${i.telefono}">asd</span></th>
+                        <th><span th:text="${i.localidad}"></span></th>
+                        <th><span th:text="${i.provincia}"></span></th>
+                        <th><span th:text="${i.pais}"></span></th>
+                        <th><span th:text="${i.telefono}"></span></th>
                         <th class="btn_tabla"><input class="sin_admin" type="radio" th:value="${i.id}" th:name="ids">
                         </th>
                     </tr>

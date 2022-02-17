@@ -3,43 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link href="../../static/css/comun.css" rel="stylesheet">
     <link th:href="${css_permisos}" rel="stylesheet">
+    <link href="../../static/css/asignaturas/listasignaturas.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Rock+Salt' rel='stylesheet' type='text/css'>
+    <script type="text/javascript" src="../../static/js/asignaturasjs.js"></script>
+
 </head>
 <body>
-<form action="#" name="listado" id="listado">
-    <table>
-        <thead>
-        <tr>
-            <th>Nombre</th>
-            <th>Curso</th>
-            <th>Horas</th>
-            <th>Cuatrimestre</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="i : ${asignaturas}">
-            <th><span th:text="${i.nombre}"></span></th>
-            <th><span th:text="${i.curso}"></span></th>
-            <th><span th:text="${i.horas}"></span></th>
-            <th><span th:text="${i.cuatrimestre}"></span></th>
-            <th><input class="sin_admin" type="radio" th:value="${i.id}" th:name="ids"></th>
-        </tr>
-        </tbody>
-    </table>
-    <input class="sin_admin" type="submit" value="Actualizar" onclick="update()">
-    <input class="sin_admin" type="submit" value="Borrar" onclick="deletes()">
-
-</form>
+<header>
+    <h1>Colegio Universitario Internacional BITCOIN</h1>
+</header>
+<main>
+    <div class="centro">
+        <form id="listado" name="listado">
+            <div class="tabla">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Curso</th>
+                        <th>Horas</th>
+                        <th>Cuatrimestre</th>
+                        <th>Seleccion</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="i : ${asignaturas}">
+                        <th><span th:text="${i.nombre}"></span></th>
+                        <th><span th:text="${i.curso}"></span></th>
+                        <th><span th:text="${i.horas}"></span></th>
+                        <th><span th:text="${i.cuatrimestre}"></span></th>
+                        <th><input class="sin_admin" type="radio" th:value="${i.id}" th:name="ids"></th>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="botones">
+                <input class="sin_admin btn btn_update" id="update" type="submit" value="Actualizar" onclick="update()">
+                <input class="sin_admin btn btn_delete" id="delete" type="submit" value="Borrar" onclick="deletes()">
+            </div>
+        </form>
+    </div>
+</main>
+<footer>
+    <h6>Creado por Carlos Castillo</h6>
+</footer>
 </body>
-<script th:inline="javascript">
-    const form = document.getElementById("listado");
-    function update(){
-        form.setAttribute('action', 'updateasignaturasget')
-        form.setAttribute('method', 'get')
-    }
-    function deletes(){
-        form.setAttribute('action', 'delasignaturaspost')
-        form.setAttribute('method', 'post')
-    }
-</script>
 </html>

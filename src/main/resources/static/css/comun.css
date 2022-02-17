@@ -20,11 +20,19 @@ body {
     min-height: 100vh;
 }
 
-header {
+header{
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
     width: 100%;
     text-align: center;
     font-size: 40px;
     padding: 10px;
+}
+
+header div{
+    margin: 0 auto;
+    width: 20%;
 }
 
 footer {
@@ -42,9 +50,9 @@ main {
 }
 
 .centro {
-    width: 80%;
     margin: 0 auto;
     display: flex;
+    flex-direction: column;
     align-items: center;
 }
 
@@ -61,5 +69,14 @@ tbody tr:nth-child(even) {
     font-size: 20px;
     width: 160px;
     height: 30px;
-    color: wheat;
+    border: none;
+    border-radius: 5px;
+}
+
+.boton_menu{
+    width: 100px;
+    height: 30px;
+    align-self: end;
+    background-color: #81ff54;
+    margin-right: 50px;
 }
