@@ -3,54 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link href="../../static/css/comun.css" rel="stylesheet">
     <link th:href="${css_permisos}" rel="stylesheet">
+    <link href="../../static/css/Alumnos/listaAlumnos.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Rock+Salt' rel='stylesheet' type='text/css'>
+    <script type="text/javascript" src="../../static/js/alumnosjs.js"></script>
 </head>
 <body>
-<form id="listado" name="listado">
-    <table>
-        <thead>
-        <tr>
-            <th>Nombre</th>
-            <th>Apellidos</th>
-            <th>Direccion</th>
-            <th>Localidad</th>
-            <th>Provincia</th>
-            <th>Pais</th>
-            <th>Telefono</th>
-            <th>Asignatura</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="i : ${alumnos}">
-            <th><span th:text="${i.nombre}"></span></th>
-            <th><span th:text="${i.apellidos}"></span></th>
-            <th><span th:text="${i.direccion}"></span></th>
-            <th><span th:text="${i.localidad}"></span></th>
-            <th><span th:text="${i.provincia}"></span></th>
-            <th><span th:text="${i.pais}"></span></th>
-            <th><span th:text="${i.telefono}"></span></th>
-            <th><input type="submit" th:value="${i.id}" th:name="id_alumno" onclick="asignaturas()"></th>
-            <th><input class="sin_admin" type="radio" th:value="${i.id}" th:name="ids"></th>
-        </tr>
-        </tbody>
-    </table>
-    <input class="sin_admin" type="submit" value="Actualizar" onclick="update()">
-    <input class="sin_admin" type="submit" value="Borrar" onclick="deletes()">
-</form>
+<header>
+    <h1>Colegio Universitario Internacional BITCOIN</h1>
+</header>
+<main>
+    <!--    <div class="margenes"></div>-->
+    <div class="centro">
+        <form id="listado" name="listado">
+            <div class="tabla">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Apellidos</th>
+                        <th>Direccion</th>
+                        <th>Localidad</th>
+                        <th>Provincia</th>
+                        <th>Pais</th>
+                        <th>Telefono</th>
+                        <th>Seleccion</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="i : ${alumnos}">
+                        <th><span th:text="${i.nombre}">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span></th>
+                        <th><span th:text="${i.apellidos}">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
+                        </th>
+                        <th><span th:text="${i.direccion}">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
+                        </th>
+                        <th><span th:text="${i.localidad}">asd</span></th>
+                        <th><span th:text="${i.provincia}">asd</span></th>
+                        <th><span th:text="${i.pais}">asd</span></th>
+                        <th><span th:text="${i.telefono}">asd</span></th>
+                        <th class="btn_tabla"><input class="sin_admin" type="radio" th:value="${i.id}" th:name="ids">
+                        </th>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="botones">
+                <input class="sin_admin btn btn_update" id="update" type="submit" value="Actualizar" onclick="update()">
+                <input class="sin_admin btn btn_delete" id="delete" type="submit" value="Borrar" onclick="deletes()">
+                <input class="btn btn_asig" type="submit" id="asignaturas" value="Ver Asignaturas"
+                       onclick="list_asignaturas()">
+            </div>
+        </form>
+    </div>
+    <!--    <div class="margenes"></div>-->
+</main>
+<footer>
+    <h6>Creado por Carlos Castillo</h6>
+</footer>
 </body>
 <script th:inline="javascript">
-    const form = document.getElementById("listado");
-    function update(){
-        form.setAttribute('action', 'updatealumnosget')
-        form.setAttribute('method', 'get')
-    }
-    function deletes(){
-        form.setAttribute('action', 'delalumnospost')
-        form.setAttribute('method', 'post')
-    }
-    function asignaturas(){
-        form.setAttribute('action', 'asig_x_alumnos')
-        form.setAttribute('method', 'get')
-    }
+
 </script>
 </html>

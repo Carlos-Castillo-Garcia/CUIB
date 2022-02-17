@@ -176,7 +176,7 @@ public class CUIBController {
     }
 
     @GetMapping("asig_x_alumnos")
-    public String asignaturas_x_alumnos(Model model, @RequestParam (value = "id_alumno") Long id_alumno){
+    public String asignaturas_x_alumnos(Model model, @RequestParam(value = "ids") Long id_alumno) {
         model.addAttribute("asignaturas", alumnosServiceImpl.Listado_Asignaturas_usuario(alumnosServiceImpl.findbyid(id_alumno)));
         return LIST_ASIGNATURAS_ALUMNO;
     }

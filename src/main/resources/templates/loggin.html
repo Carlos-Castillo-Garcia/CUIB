@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <!--    <link href="../static/css/comun.css" rel="stylesheet">-->
+    <link href="../static/css/comun.css" rel="stylesheet">
     <link href="../static/css/loggin.css" rel="stylesheet">
 </head>
 <body>
@@ -11,25 +11,29 @@
     <h1>Colegio Universitario Internacional BITCOIN</h1>
 </header>
 <main>
-    <form action="#" th:action="@{/logged}" th:object="${user}" method="post">
-        <label>BIENVENIDO</label>
-        <div>
-            <span th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}" style="color: red"></span>
-        </div>
-        <div>
-            <input type="text" th:field="${user.nombre}" placeholder="Nombre de Usuario">
-        </div>
-        <div>
-            <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}" style="color: red"></span>
-        </div>
-        <div>
-            <input type="password" th:field="${user.password}" placeholder="Contraseña">
-        </div>
-        <div>
-            <input class="btn" type="submit" value="submit">
-        </div>
-    </form>
+    <div class="centro">
+        <form action="#" th:action="@{/logged}" th:object="${user}" method="post">
+            <label>BIENVENIDO</label>
+            <div>
+                <span th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}" style="color: red"></span>
+            </div>
+            <div>
+                <input type="text" th:field="${user.nombre}" placeholder="Nombre de Usuario">
+            </div>
+            <div>
+                <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}" style="color: red"></span>
+            </div>
+            <div>
+                <input type="password" th:field="${user.password}" placeholder="Contraseña">
+            </div>
+            <div>
+                <input class="btn" type="submit" value="Entrar">
+            </div>
+        </form>
+    </div>
 </main>
-<footer></footer>
+<!--<footer>-->
+<!--    <h6>Creado por Carlos Castillo</h6>-->
+<!--</footer>-->
 </body>
 </html>
