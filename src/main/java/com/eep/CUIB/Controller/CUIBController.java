@@ -69,6 +69,20 @@ public class CUIBController {
     @GetMapping("/")
     public String Index(Model model) {
         model.addAttribute("user", new Usuarios());
+        usuariosServiceImpl.addUsuarios(new Usuarios(1L,"admin", "Passw0rd", 1L));
+        usuariosServiceImpl.addUsuarios(new Usuarios(2L,"user", "user", 2L));
+        ArrayList<Asignaturas> inicio = new ArrayList<>();
+        inicio.add(new Asignaturas(1, "Matematicas", 1, 35, 2));
+        inicio.add(new Asignaturas(2, "Lengua", 1, 90, 1));
+        inicio.add(new Asignaturas(3, "Ciencias", 3, 0, 2));
+        inicio.add(new Asignaturas(4, "Programacion", 4, 82, 2));
+        inicio.add(new Asignaturas(5, "Arimetica", 2, 71, 1));
+        inicio.add(new Asignaturas(6, "Educacion Fisica", 1, 80, 1));
+        inicio.add(new Asignaturas(7, "Sociales", 2, 20, 2));
+        inicio.add(new Asignaturas(8, "Bases de Datos", 3, 10, 1));
+        inicio.add(new Asignaturas(9, "Lenguaje de Marcas", 4, 45, 2));
+        inicio.add(new Asignaturas(10, "Sistemas de Gestion Empresarial", 1, 50, 1));
+        asignaturasServiceImpl.GuardarAsignaturas(inicio);
         return INDEX;
     }
 

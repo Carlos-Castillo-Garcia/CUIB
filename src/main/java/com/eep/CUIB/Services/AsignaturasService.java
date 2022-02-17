@@ -12,4 +12,5 @@ public interface AsignaturasService {
     public abstract Asignaturas buscarAsignaturas(int id);
     public abstract String BajaAsignaturasId(int id);
     public abstract String ModificacionAsignaturas(Asignaturas asignaturas);
+    public abstract void inicio(ArrayList<Asignaturas> a);
 }

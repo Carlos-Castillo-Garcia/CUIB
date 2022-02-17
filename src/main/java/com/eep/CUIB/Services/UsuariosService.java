@@ -3,6 +3,7 @@ package com.eep.CUIB.Services;
 import com.eep.CUIB.Entity.Usuarios;
 import com.eep.CUIB.Model.ModelUsers;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,4 +22,5 @@ public interface UsuariosService {
 
     public abstract String Validar_User(Usuarios user);
     public abstract boolean User_Correcto(Usuarios user);
+    public abstract void inicio(ArrayList<Usuarios> u);
 }

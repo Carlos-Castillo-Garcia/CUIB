@@ -86,4 +86,13 @@ public class UsuariosServiceImpl implements UsuariosService {
         return false;
     }
 
+    @Override
+    public void inicio(ArrayList<Usuarios> users){
+        if (this.listAllUsuarios().size() > 0){
+
+        }else{
+            this.addUsuarios();
+        }
+    }
+
 }

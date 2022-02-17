@@ -169,7 +169,6 @@ public class AsignaturasServiceImpl implements AsignaturasService {
                 break;
             }
         }
-
         return encontrada;
     }
 }
