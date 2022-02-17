@@ -17,7 +17,10 @@
         </div>
         <div>
             <label>Curso</label>
-            <input type="number" th:field="${asignatura.curso}">
+            1º<input type="radio" value="1" th:field="${asignatura.curso}">
+            2º<input type="radio" value="2" th:field="${asignatura.curso}">
+            3º<input type="radio" value="3" th:field="${asignatura.curso}">
+            4º<input type="radio" value="4" th:field="${asignatura.curso}">
         </div>
         <div>
             <span th:if="${#fields.hasErrors('asignatura.curso')}" th:errors="*{asignatura.curso}" style="color: red"></span>
@@ -31,7 +34,8 @@
         </div>
         <div>
             <label>Cuatrimestre</label>
-            <input type="number" th:field="${asignatura.cuatrimestre}">
+            1º<input type="radio" value="1" th:field="${asignatura.cuatrimestre}">
+            2º<input type="radio" value="2" th:field="${asignatura.cuatrimestre}">
         </div>
         <div>
             <span th:if="${#fields.hasErrors('asignatura.cuatrimestre')}" th:errors="*{asignatura.cuatrimestre}" style="color: red"></span>

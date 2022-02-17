@@ -9,10 +9,8 @@ import com.eep.CUIB.Model.ModelUsers;
 import com.eep.CUIB.ServicesImpl.AlumnosServiceImpl;
 import com.eep.CUIB.ServicesImpl.AsignaturasServiceImpl;
 import com.eep.CUIB.ServicesImpl.UsuariosServiceImpl;
-import org.hibernate.dialect.function.AvgWithArgumentCastFunction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.boot.autoconfigure.amqp.AbstractRabbitListenerContainerFactoryConfigurer;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -27,6 +25,7 @@ import java.util.ArrayList;
 
 @Controller
 public class CUIBController {
+    private static Usuarios UserLog = new Usuarios();
 
     private static final String CRUD = "crud";
     private static final String INDEX = "loggin";
@@ -69,20 +68,8 @@ public class CUIBController {
     @GetMapping("/")
     public String Index(Model model) {
         model.addAttribute("user", new Usuarios());
-        usuariosServiceImpl.addUsuarios(new Usuarios(1L,"admin", "Passw0rd", 1L));
-        usuariosServiceImpl.addUsuarios(new Usuarios(2L,"user", "user", 2L));
-        ArrayList<Asignaturas> inicio = new ArrayList<>();
-        inicio.add(new Asignaturas(1, "Matematicas", 1, 35, 2));
-        inicio.add(new Asignaturas(2, "Lengua", 1, 90, 1));
-        inicio.add(new Asignaturas(3, "Ciencias", 3, 0, 2));
-        inicio.add(new Asignaturas(4, "Programacion", 4, 82, 2));
-        inicio.add(new Asignaturas(5, "Arimetica", 2, 71, 1));
-        inicio.add(new Asignaturas(6, "Educacion Fisica", 1, 80, 1));
-        inicio.add(new Asignaturas(7, "Sociales", 2, 20, 2));
-        inicio.add(new Asignaturas(8, "Bases de Datos", 3, 10, 1));
-        inicio.add(new Asignaturas(9, "Lenguaje de Marcas", 4, 45, 2));
-        inicio.add(new Asignaturas(10, "Sistemas de Gestion Empresarial", 1, 50, 1));
-        asignaturasServiceImpl.GuardarAsignaturas(inicio);
+        asignaturasServiceImpl.inicio();
+        usuariosServiceImpl.inicio();
         return INDEX;
     }
 
@@ -92,6 +79,7 @@ public class CUIBController {
             return INDEX;
         } else if(usuariosServiceImpl.User_Correcto(usuariosServiceImpl.Model_Entity_Usuarios(user))){
             model.addAttribute("css_permisos", usuariosServiceImpl.Validar_User(usuariosServiceImpl.Model_Entity_Usuarios(user)));
+            UserLog = usuariosServiceImpl.Model_Entity_Usuarios(user);
             logComponent.info("Usuario Loggeado correctamente");
             return CRUD;
         }
@@ -106,6 +94,7 @@ public class CUIBController {
     public String ListAsignaturasGet(Model model, @RequestParam(value = "url", required = false) String url) {
         model.addAttribute("asignaturas", asignaturasServiceImpl.LeerAsignaturas());
         model.addAttribute("url", url);
+        model.addAttribute("css_permisos", usuariosServiceImpl.Validar_User(UserLog));
         logComponent.info("Asignaturas listadas correctamente");
         return LIST_ASIGNATURAS;
     }
@@ -166,7 +155,7 @@ public class CUIBController {
     @GetMapping("listalumnosget")
     public String ListAlumnosGet(Model model) {
         model.addAttribute("alumnos", alumnosServiceImpl.listAllAlumnos());
-//        model.addAttribute("asignaturas", alumnosServiceImpl.Listado_Asignaturas_usuario(alumnosServiceImpl.listAllAlumnos()));
+        model.addAttribute("css_permisos", usuariosServiceImpl.Validar_User(UserLog));
         logComponent.info("Alumnos listado correctamente");
         return LIST_ALUMNOS;
     }

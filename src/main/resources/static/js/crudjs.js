@@ -9,11 +9,19 @@ window.onload = function () {
         form.setAttribute('action', '/listalumnosget');
     }
 
+    document.getElementById('ListAlumnosu').onclick = function listalumnos() {
+        form.setAttribute('action', '/listalumnosget');
+    }
+
     document.getElementById('AsignaturaAdd').onclick = function addasignaturas() {
         form.setAttribute('action', 'addasignaturasget');
     }
 
     document.getElementById('ListAsignaturas').onclick = function listasignaturas() {
+        form.setAttribute('action', 'listasignaturasget');
+    }
+
+    document.getElementById('ListAsignaturasu').onclick = function listasignaturas() {
         form.setAttribute('action', 'listasignaturasget');
     }
 

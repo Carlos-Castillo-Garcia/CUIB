@@ -9,3 +9,7 @@
     align-content: space-between;
     justify-content: center;
 }
+
+.sin_admin {
+    display: none;
+}

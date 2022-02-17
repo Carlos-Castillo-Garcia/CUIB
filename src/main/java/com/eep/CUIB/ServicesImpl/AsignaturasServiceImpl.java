@@ -163,12 +163,30 @@ public class AsignaturasServiceImpl implements AsignaturasService {
         Asignaturas encontrada = new Asignaturas();
         datos = (ArrayList<Asignaturas>) this.LeerAsignaturas();
 
-        for (int i = 0; i < datos.size(); i++){
-            if(datos.get(i).getId() == id){
+        for (int i = 0; i < datos.size(); i++) {
+            if (datos.get(i).getId() == id) {
                 encontrada = datos.get(i);
                 break;
             }
         }
         return encontrada;
+    }
+
+    @Override
+    public void inicio() {
+        if (this.LeerAsignaturas().size() <= 0) {
+            ArrayList<Asignaturas> inicio = new ArrayList<>();
+            inicio.add(new Asignaturas(1, "Matematicas", 1, 35, 2));
+            inicio.add(new Asignaturas(2, "Lengua", 1, 90, 1));
+            inicio.add(new Asignaturas(3, "Ciencias", 3, 0, 2));
+            inicio.add(new Asignaturas(4, "Programacion", 4, 82, 2));
+            inicio.add(new Asignaturas(5, "Arimetica", 2, 71, 1));
+            inicio.add(new Asignaturas(6, "Educacion Fisica", 1, 80, 1));
+            inicio.add(new Asignaturas(7, "Sociales", 2, 20, 2));
+            inicio.add(new Asignaturas(8, "Bases de Datos", 3, 10, 1));
+            inicio.add(new Asignaturas(9, "Lenguaje de Marcas", 4, 45, 2));
+            inicio.add(new Asignaturas(10, "Sistemas de Gestion Empresarial", 1, 50, 1));
+            this.GuardarAsignaturas(inicio);
+        }
     }
 }

@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link th:href="${css_permisos}" rel="stylesheet">
 </head>
 <body>
 <form id="listado" name="listado">
@@ -29,12 +30,12 @@
             <th><span th:text="${i.pais}"></span></th>
             <th><span th:text="${i.telefono}"></span></th>
             <th><input type="submit" th:value="${i.id}" th:name="id_alumno" onclick="asignaturas()"></th>
-            <th><input type="radio" th:value="${i.id}" th:name="ids"></th>
+            <th><input class="sin_admin" type="radio" th:value="${i.id}" th:name="ids"></th>
         </tr>
         </tbody>
     </table>
-    <input type="submit" value="Actualizar" onclick="update()">
-    <input type="submit" value="Borrar" onclick="deletes()">
+    <input class="sin_admin" type="submit" value="Actualizar" onclick="update()">
+    <input class="sin_admin" type="submit" value="Borrar" onclick="deletes()">
 </form>
 </body>
 <script th:inline="javascript">

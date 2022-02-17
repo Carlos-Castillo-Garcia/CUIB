@@ -87,11 +87,10 @@ public class UsuariosServiceImpl implements UsuariosService {
     }
 
     @Override
-    public void inicio(ArrayList<Usuarios> users){
-        if (this.listAllUsuarios().size() > 0){
-
-        }else{
-            this.addUsuarios();
+    public void inicio() {
+        if (this.listAllUsuarios().size() <= 0) {
+            this.addUsuarios(new Usuarios(1L, "Admin", "Passw0rd", 1L));
+            this.addUsuarios(new Usuarios(1L, "User", "user", 2L));
         }
     }
 

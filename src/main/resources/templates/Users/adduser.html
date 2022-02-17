@@ -24,7 +24,8 @@
         </div>
         <div>
             <label>Permisos</label>
-            <input type="number" th:field="${usuario.permisos}">
+            Admin<input type="radio" value="1" th:field="${usuario.permisos}">
+            User<input type="radio" value="2" th:field="${usuario.permisos}">
         </div>
     </div>
     <input type="submit" value="submit">

@@ -6,11 +6,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public interface AsignaturasService {
-    public abstract String GuardarAsignaturas(ArrayList<Asignaturas> listado_asignaturas);
-    public abstract String GuardarAsignaturas_BM(ArrayList<Asignaturas> lista_datos);
-    public abstract List<Asignaturas> LeerAsignaturas();
-    public abstract Asignaturas buscarAsignaturas(int id);
-    public abstract String BajaAsignaturasId(int id);
-    public abstract String ModificacionAsignaturas(Asignaturas asignaturas);
-    public abstract void inicio(ArrayList<Asignaturas> a);
+    String GuardarAsignaturas(ArrayList<Asignaturas> listado_asignaturas);
+
+    String GuardarAsignaturas_BM(ArrayList<Asignaturas> lista_datos);
+
+    List<Asignaturas> LeerAsignaturas();
+
+    Asignaturas buscarAsignaturas(int id);
+
+    String BajaAsignaturasId(int id);
+
+    String ModificacionAsignaturas(Asignaturas asignaturas);
+
+    void inicio();
 }

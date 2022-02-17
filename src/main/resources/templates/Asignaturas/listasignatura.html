@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link th:href="${css_permisos}" rel="stylesheet">
 </head>
 <body>
 <form action="#" name="listado" id="listado">
@@ -21,12 +22,12 @@
             <th><span th:text="${i.curso}"></span></th>
             <th><span th:text="${i.horas}"></span></th>
             <th><span th:text="${i.cuatrimestre}"></span></th>
-            <th><input type="radio" th:value="${i.id}" th:name="ids"></th>
+            <th><input class="sin_admin" type="radio" th:value="${i.id}" th:name="ids"></th>
         </tr>
         </tbody>
     </table>
-    <input type="submit" value="Actualizar" onclick="update()">
-    <input type="submit" value="Borrar" onclick="deletes()">
+    <input class="sin_admin" type="submit" value="Actualizar" onclick="update()">
+    <input class="sin_admin" type="submit" value="Borrar" onclick="deletes()">
 
 </form>
 </body>
